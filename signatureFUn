@@ -1,0 +1,20 @@
+PogodnoEXE
+
+API key: syxaa057bnxlqv3vipcd0h13r71ehbvd
+
+API secret: kthq3y9low28wtnnmfiu5zzmy3jiioh8
+
+kthq3y9low28wtnnmfiu5zzmy3jiioh8gaccesspublicactionissuu.documents.listapiKeysyxaa057bnxlqv3vipcd0h13r71ehbvdformatjsonresponseParamstitle,description
+
+cb5070b6ffb27cd72c2aa114dacc3b57
+
+action = issuu.documents.list
+apiKey = qyy6ls1qv15uh9xwwlvk853u2uvpfka7
+access = public
+responseParams = title,description
+format = json
+
+
+http://api.issuu.com/1_0?action=issuu.documents.list&apiKey=syxaa057bnxlqv3vipcd0h13r71ehbvd&format=json&signature=2638f04586978f415a56cab3be9faa1e
+
+kthq3y9low28wtnnmfiu5zzmy3jiioh8actionissuu.documents.listapiKeysyxaa057bnxlqv3vipcd0h13r71ehbvdformatjson

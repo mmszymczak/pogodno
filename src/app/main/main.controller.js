@@ -13,6 +13,7 @@
     vm.classAnimation = '';
     vm.creationDate = 1460370412681;
     vm.showToastr = showToastr;
+    vm.showJumbo = showJumbo;
 
     activate();
 
@@ -34,6 +35,11 @@
       angular.forEach(vm.awesomeThings, function(awesomeThing) {
         awesomeThing.rank = Math.random();
       });
+    }
+
+    function showJumbo() {
+      return true;
+      //okno z dokumentem
     }
   }
 })();

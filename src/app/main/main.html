@@ -4,18 +4,8 @@
     <acme-navbar creation-date="main.creationDate"></acme-navbar>
   </div>
 
-  <div class="jumbotron text-center">
-    <h1>'Allo, 'Allo!</h1>
-    <p class="lead">
-      <img src="assets/images/yeoman.png" alt="I'm Yeoman"><br>
-      Always a pleasure scaffolding your apps.
-    </p>
-    <p class="animated infinite" ng-class="main.classAnimation">
-      <button type="button" class="btn btn-lg btn-success" ng-click="main.showToastr()">Splendid Toastr</button>
-    </p>
-    <p>
-      With ♥ thanks to the contributions of<acme-malarkey extra-values="['Yeoman', 'Gulp', 'Angular']"></acme-malarkey>
-    </p>
+  <div class="jumbotron text-center" ng-hide="main.showJumbo">
+  Tutaj jest okno z dokumentem pdf wybranym przez uzytkownika
   </div>
 
   <div class="row">
@@ -31,4 +21,7 @@
     </div>
   </div>
 
+  <div>
+    <acme-footer></acme-footer>
+  </div>
 </div>
