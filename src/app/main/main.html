@@ -4,12 +4,10 @@
     <acme-navbar creation-date="main.creationDate"></acme-navbar>
   </div>
 
-  <div class="jumbotron text-center" ng-hide="main.showJumbo">
-  Tutaj jest okno z dokumentem pdf wybranym przez uzytkownika
-  </div>
+  <acme-jumbo></acme-jumbo>
 
   <div class="row">
-    <div class="col-sm-6 col-md-4" ng-repeat="awesomeThing in main.awesomeThings | orderBy:'rank'">
+    <div class="col-sm-6 col-md-4" ng-repeat="awesomeThing in main.awesomeThings | orderBy:'rank'" ng-click="main.toggleWindow(awesomeThing)">
       <div class="thumbnail">
         <img class="pull-right" ng-src="assets/images/{{ awesomeThing.logo }}" alt="{{ awesomeThing.title }}">
         <div class="caption">

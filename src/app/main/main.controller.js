@@ -10,36 +10,48 @@
     var vm = this;
 
     vm.awesomeThings = [];
-    vm.classAnimation = '';
     vm.creationDate = 1460370412681;
-    vm.showToastr = showToastr;
-    vm.showJumbo = showJumbo;
-
+    vm.showJumbo = false;
+    vm.toggleWindow = toggleWindow;
+    vm.activeThing = '';
+    vm.addReview = addReview;
+    
+    //vm.awesomeThings = webDevTec.getTec();
+    
     activate();
 
     function activate() {
-      getWebDevTec();
-      $timeout(function() {
-        vm.classAnimation = 'rubberBand';
-      }, 4000);
-    }
-
-    function showToastr() {
-      toastr.info('Fork <a href="https://github.com/Swiip/generator-gulp-angular" target="_blank"><b>generator-gulp-angular</b></a>');
-      vm.classAnimation = '';
-    }
-
-    function getWebDevTec() {
       vm.awesomeThings = webDevTec.getTec();
-
-      angular.forEach(vm.awesomeThings, function(awesomeThing) {
-        awesomeThing.rank = Math.random();
-      });
     }
 
-    function showJumbo() {
-      return true;
-      //okno z dokumentem
+    // function getMagazines() {
+    //   vm.awesomeThings = webDevTec.getTec();
+    // }
+
+    function toggleWindow(awesomeThing){
+      if (vm.activeThing === ''){
+        vm.showJumbo = !vm.showJumbo;
+        vm.activeThing = awesomeThing;
+      } else if (awesomeThing.title === vm.activeThing.title){
+        vm.showJumbo = !vm.showJumbo;
+      } else if (!vm.showJumbo) {
+        vm.activeThing = awesomeThing;
+        vm.showJumbo = !vm.showJumbo;
+      } else {
+        vm.activeThing = awesomeThing;
+      }
+
+      // webDevTec.activeThing = vm.activeThing;
+      
+      webDevTec.setActiveThing(vm.activeThing);
+      console.log(webDevTec.getActiveThing());
+    }
+
+    function addReview(product){
+      console.log(product);
+      console.log(vm.activeThing.comments);
+     vm.activeThing.comments.push(product);
     }
   }
+
 })();

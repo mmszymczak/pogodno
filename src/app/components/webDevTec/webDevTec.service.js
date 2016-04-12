@@ -5,63 +5,169 @@
       .module('pogodno')
       .service('webDevTec', webDevTec);
 
+
   /** @ngInject */
   function webDevTec() {
+
     var data = [
-      {
-        'title': 'AngularJS',
-        'url': 'https://angularjs.org/',
-        'description': 'HTML enhanced for web apps!',
-        'logo': 'angular.png'
-      },
-      {
-        'title': 'BrowserSync',
-        'url': 'http://browsersync.io/',
-        'description': 'Time-saving synchronised browser testing.',
-        'logo': 'browsersync.png'
-      },
-      {
-        'title': 'GulpJS',
-        'url': 'http://gulpjs.com/',
-        'description': 'The streaming build system.',
-        'logo': 'gulp.png'
-      },
-      {
-        'title': 'Jasmine',
-        'url': 'http://jasmine.github.io/',
-        'description': 'Behavior-Driven JavaScript.',
-        'logo': 'jasmine.png'
-      },
-      {
-        'title': 'Karma',
-        'url': 'http://karma-runner.github.io/',
-        'description': 'Spectacular Test Runner for JavaScript.',
-        'logo': 'karma.png'
-      },
-      {
-        'title': 'Protractor',
-        'url': 'https://github.com/angular/protractor',
-        'description': 'End to end test framework for AngularJS applications built on top of WebDriverJS.',
-        'logo': 'protractor.png'
-      },
-      {
-        'title': 'Bootstrap',
-        'url': 'http://getbootstrap.com/',
-        'description': 'Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile first projects on the web.',
-        'logo': 'bootstrap.png'
-      },
-      {
-        'title': 'Angular UI Bootstrap',
-        'url': 'http://angular-ui.github.io/bootstrap/',
-        'description': 'Bootstrap components written in pure AngularJS by the AngularUI Team.',
-        'logo': 'ui-bootstrap.png'
-      }
+     {
+      "title": "Totemy dla zastępów ze Skautingu dla Chłopców",
+      "vol": 1,
+      "articles": [
+        {
+          "author": "Kasia Lubiejewska",
+          "title": "Hufiec - nasz drugi dom"
+        },
+        {
+          "author": "Poczta Harcerska Szczecin III",
+          "title": "wywiad z jej Naczelnikiem i sondaż"
+        },
+        {
+          "author": "Robert Baden-Powell",
+          "title": "wskazówki dla instruktorów"
+        },
+        {
+          "author": "Nieznany",
+          "title": "Chorągwiany biwak WRON - wrażenia na gorąco"
+        },
+        {
+          "author": [
+            "Leszek Kaczanowski",
+            "Maciej Uciechowski"
+          ],
+          "title": "O Komisji Kształcenia i Stopni - Szermierka"
+        },
+        {
+          "author": "Nieznany",
+          "title": "Gród Sediny - reportaż z budowy i rozmowa z prezesem spółdzielni - Józefem Kalinowskim"
+        },
+        {
+          "author": [
+            "Michał Borun",
+            "Roman Proszkowski"
+          ],
+          "title": "Globtroter - Norwegia 1996"
+        }
+      ],
+      "url": "https://angularjs.org/",
+      "description": "description for vol. 01",
+      "logo": "magazine/01.jpg",
+      "comments": [
+        {
+          "pseudonim": "Krzysiek",
+          "context": "komentarz1(1obj)",
+          "grade": 1,
+          "mail": "blabla1@gmail.com",
+          "subcribe" : true
+        },
+        {
+          "pseudonim": "Maciej",
+          "context": "komentarz2(1obj)",
+          "grade": 2,
+          "mail": "blabla2@gmail.com",
+          "subcribe" : false
+        },
+        {
+          "pseudonim": "Arek",
+          "context": "komentarz3(1obj)",
+          "grade": 3,
+          "mail": "blabla3@gmail.com",
+          "subcribe" : true
+        }
+      ]
+    },   
+     {
+      "title": "Zdecydowanie cos innego",
+      "vol": 2,
+      "articles": [
+        {
+          "author": "Kasia Lubiejewska",
+          "title": "Hufiec - nasz drugi dom"
+        },
+        {
+          "author": "Poczta Harcerska Szczecin III",
+          "title": "wywiad z jej Naczelnikiem i sondaż"
+        },
+        {
+          "author": "Robert Baden-Powell",
+          "title": "wskazówki dla instruktorów"
+        },
+        {
+          "author": "Nieznany",
+          "title": "Chorągwiany biwak WRON - wrażenia na gorąco"
+        },
+        {
+          "author": [
+            "Leszek Kaczanowski",
+            "Maciej Uciechowski"
+          ],
+          "title": "O Komisji Kształcenia i Stopni - Szermierka"
+        },
+        {
+          "author": "Nieznany",
+          "title": "Gród Sediny - reportaż z budowy i rozmowa z prezesem spółdzielni - Józefem Kalinowskim"
+        },
+        {
+          "author": [
+            "Michał Borun",
+            "Roman Proszkowski"
+          ],
+          "title": "Globtroter - Norwegia 1996"
+        }
+      ],
+      "url": "https://angularjs.org/",
+      "description": "description for vol. 01",
+      "logo": "magazine/01.jpg",
+      "comments": [
+        {
+          "pseudonim": "Krzysiek",
+          "context": "komentarz1(2obj)",
+          "grade": 1,
+          "mail": "blabla1@gmail.com"
+        },
+        {
+          "pseudonim": "Maciej",
+          "context": "komentarz2(2obj)",
+          "grade": 2,
+          "mail": "blabla2@gmail.com"
+        },
+        {
+          "pseudonim": "Arek",
+          "context": "komentarz3(2obj)",
+          "grade": 3,
+          "mail": "blabla3@gmail.com"
+        }
+      ]
+    } 
+    // {
+    //   'title': 'Angular UI Bootstrap',
+    //   'url': 'http://angular-ui.github.io/bootstrap/',
+    //   'description': 'Bootstrap components written in pure AngularJS by the AngularUI Team.',
+    //   'logo': 'ui-bootstrap.png'
+    // }
     ];
 
+    var activeThing = {}; 
+
     this.getTec = getTec;
+    this.setTec = setTec;
+    this.getActiveThing = getActiveThing;
+    this.setActiveThing = setActiveThing;
 
     function getTec() {
       return data;
+    }
+
+    function setTec(element,location) {
+      data.location.push(element);
+    }
+
+    function getActiveThing() {
+      return activeThing;
+    }
+
+    function setActiveThing(element) {
+      activeThing = element;
     }
   }
 
