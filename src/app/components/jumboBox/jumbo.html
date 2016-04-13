@@ -1,11 +1,11 @@
 <div class="jumbotron" ng-show="main.showJumbo">
 	<div id='form'>
 		<div class="row Acol-md-12">
-			<form id="commentform" ng-submit="main.addReview(main.comment)">{{main.comment | json}}
-				<div id="comment-name" class="form-row">
+			<form name="commentForm" id="commentform" ng-submit="commentForm.$valid && main.addReview(main.comment)" novalidate>{{main.comment | json}}
+				<div id="comment-name" class="form-row" ng-class="{ 'has-error': commentForm.pseudonim.$invalid && commentForm.pseudonim.$dirty }">
 					<input type = "text" placeholder = "Pseudonim (wymagane)" name = "dname"  id = "name" ng-model="main.comment.pseudonim" required>
 				</div>
-				<div id="comment-email" class="form-row">
+				<div id="comment-email" class="form-row" ng-class="{ 'has-error': commentForm.mail.$invalid && commentForm.mail.$dirty }">
 					<input type = "email" placeholder = "E-Mail (wymagane)" name = "demail"  id = "email" ng-model="main.comment.mail" required>
 				</div>
 				<label>Oceń artykuł</label>
@@ -41,7 +41,7 @@
 						</label>
 					</div>
 				</div>
-					<div id="comment-message" class="form-row">
+					<div id="comment-message" class="form-row" ng-class="{ 'has-error': commentForm.context.$invalid && commentForm.context.$dirty }">
 				<textarea name = "comment" placeholder = "Tutaj wpisz tekst..." id = "comment" ng-model="main.comment.context" required></textarea>
 				</div>
 				<input type="submit" name="dsubmit" id="commentSubmit" value="Dodaj komentarz">

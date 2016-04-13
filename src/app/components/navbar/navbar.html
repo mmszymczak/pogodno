@@ -1,25 +1,22 @@
 <nav class="navbar navbar-static-top navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/#/">
+      <a class="navbar-brand" href="#/" ng-click="main.hideJumbo()">
         <span class="glyphicon glyphicon-fire"></span> Pogodno.EXE
       </a>
     </div>
-
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
       <ul class="nav navbar-nav">
-        <li class="active"><a ng-href="#">Strona Główna</a></li>
-        <li><a ng-href="#">O Redakcji</a></li>
-        <li><a ng-href="#">O Gazecie</a></li>
+        <li class="active"><a ng-href="#/" ng-click="main.hideJumbo()">Strona Główna</a></li>
+        <li><a ng-href="#/team">O Redakcji</a></li>
+        <li><a ng-href="#/about">O Gazecie</a></li>
       </ul>
-
       <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Szukaj...">
         </div>
         <button type="submit" class="btn btn-default">Szukaj...</button>
       </form>
-
     </div>
   </div>
 </nav>

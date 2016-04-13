@@ -135,3 +135,11 @@ font-size: 18px;
 color: white;
 border-radius: 18px;
 }
+
+input.ng-invalid.ng-dirty {
+	border-color: #FA787E;
+}
+
+input.ng-valid.ng-dirty {
+	border-color: #78FA89;
+}

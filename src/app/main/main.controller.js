@@ -6,7 +6,7 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($scope, $timeout, webDevTec, toastr) {
+  function MainController($scope, $http, $timeout, webDevTec, Issuu) {
     var vm = this;
 
     vm.comment = {};
@@ -16,7 +16,17 @@
     vm.toggleWindow = toggleWindow;
     vm.activeThing = '';
     vm.addReview = addReview;
+    vm.hideJumbo = hideJumbo;
+    vm.allIssuu = {};
+    vm.allData;
+ 
+    Issuu.all(function(data){ 
+      vm.allData = data;
+    });
 
+    function hideJumbo(){
+      return vm.showJumbo = false;
+    }
 
     function toggleWindow(awesomeThing){
       if (vm.activeThing === ''){
@@ -30,8 +40,6 @@
       } else {
         vm.activeThing = awesomeThing;
       }
-      //console.log(1, vm.activeThing);
-      //webDevTec.setActiveThing(vm.activeThing);
     }
 
     function addReview(product){

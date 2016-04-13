@@ -12,6 +12,16 @@
         controller: 'MainController',
         controllerAs: 'main'
       })
+      .when('/team', {
+        templateUrl: 'app/main/team.html',
+        controller: 'MainController',
+        controllerAs: 'main'
+      })
+      .when('/about', {
+        templateUrl: 'app/main/about.html',
+        controller: 'MainController',
+        controllerAs: 'main'
+      })
       .otherwise({
         redirectTo: '/'
       });
