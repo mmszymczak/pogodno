@@ -52,7 +52,7 @@
       "url": "https://angularjs.org/",
       "description": "description for vol. 01",
       "logo": "magazine/01.jpg",
-      "comments": [
+      "reviews": [
         {
           "pseudonim": "Krzysiek",
           "context": "komentarz1(1obj)",
@@ -118,7 +118,7 @@
       "url": "https://angularjs.org/",
       "description": "description for vol. 01",
       "logo": "magazine/01.jpg",
-      "comments": [
+      "reviews": [
         {
           "pseudonim": "Krzysiek",
           "context": "komentarz1(2obj)",
@@ -139,12 +139,6 @@
         }
       ]
     } 
-    // {
-    //   'title': 'Angular UI Bootstrap',
-    //   'url': 'http://angular-ui.github.io/bootstrap/',
-    //   'description': 'Bootstrap components written in pure AngularJS by the AngularUI Team.',
-    //   'logo': 'ui-bootstrap.png'
-    // }
     ];
 
     var activeThing = {}; 

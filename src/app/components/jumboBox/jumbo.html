@@ -1,57 +1,66 @@
 <div class="jumbotron" ng-show="main.showJumbo">
 	<div id='form'>
-		<div class="row">
-			<div class="col-md-12">
-				<form id="commentform" ng-submit="main.addReview(main.comment)">
-					<div id="comment-name" class="form-row">
-						<input type = "text" placeholder = "Pseudonim (wymagane)" name = "dname"  id = "name" ng-model="main.comment.pseudonim" required>
+		<div class="row Acol-md-12">
+			<form id="commentform" ng-submit="main.addReview(main.comment)">{{main.comment | json}}
+				<div id="comment-name" class="form-row">
+					<input type = "text" placeholder = "Pseudonim (wymagane)" name = "dname"  id = "name" ng-model="main.comment.pseudonim" required>
+				</div>
+				<div id="comment-email" class="form-row">
+					<input type = "email" placeholder = "E-Mail (wymagane)" name = "demail"  id = "email" ng-model="main.comment.mail" required>
+				</div>
+				<label>Oceń artykuł</label>
+				<div class="form-group">
+					<div class="radio">
+						<label>
+						<input type="radio" name="grade" value="1" ng-model="main.comment.grade">
+						1
+						</label>
 					</div>
-					<div id="comment-email" class="form-row">
-						<input type = "email" placeholder = "E-Mail (wymagane)" name = "demail"  id = "email" ng-model="main.comment.mail" required>
+					<div class="radio">
+						<label>
+						<input type="radio" name="grade" value="2" ng-model="main.comment.grade">
+						2
+						</label>
 					</div>
-					<div id="comment-grade" class="form-row">Ocena:
-						<label class="radio-inline">
-						<input type="radio" name="optradio" ng-model="main.comment.grade">1</label>
-
-						<label class="radio-inline">
-						<input type="radio" name="optradio" ng-model="main.comment.grade">2</label>
-
-						<label class="radio-inline">
-						<input type="radio" name="optradio" ng-model="main.comment.grade">3</label>
-
-						<label class="radio-inline">
-						<input type="radio" name="optradio" ng-model="main.comment.grade">2</label>
-
-						<label class="radio-inline">
-						<input type="radio" name="optradio"  ng-model="main.comment.grade" checked>3</label>
-
+					<div class="radio">
+						<label>
+						<input type="radio" name="grade" value="3" ng-model="main.comment.grade" checked>
+						3
+						</label>
 					</div>
+					<div class="radio">
+						<label>
+						<input type="radio" name="grade" value="4" ng-model="main.comment.grade">
+						4
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+						<input type="radio" name="grade" value="5" ng-model="main.comment.grade">
+						5
+						</label>
+					</div>
+				</div>
 					<div id="comment-message" class="form-row">
-						<textarea name = "comment" placeholder = "Tutaj wpisz tekst..." id = "comment" ng-model="main.comment.context" required></textarea>
-					</div>
-					<input type="submit" name="dsubmit" id="commentSubmit" value="Dodaj komentarz">
-					<input style="width: 30px" type="checkbox" value="1" name="subscribe" id="subscribe" checked="checked">
+				<textarea name = "comment" placeholder = "Tutaj wpisz tekst..." id = "comment" ng-model="main.comment.context" required></textarea>
+				</div>
+				<input type="submit" name="dsubmit" id="commentSubmit" value="Dodaj komentarz">
+				<input style="width: 30px" type="checkbox" value="1" name="subscribe" id="subscribe" checked="checked" ng-model="main.comment.subscribe">
 				<p1><b>Powiadom mnie, jeśli pojawią się nowe komentarze!</b></p1>
-				</form>
-			</div>
+			</form>
 		</div>
 	</div>
-<!-- </div> -->
+	<!-- </div> -->
 
 	<!---Reply Section-->
-	<div id="second">
-		<div class="row">
-			<div class="col-md-1">
-				<h3 class="second_heading"><b>Zostaw odpowiedź</b></h3>
-			</div>
-		</div>
+
+	<div id="middle" ng-repeat="review in main.activeThing.reviews">{{review | json}}
+	<form name="reviewForm">
+		<blockquote>
+			<p><b>Stars: {{review.grade}}</b></p>
+			<p>{{review.context}}</p>
+			<cite>by: {{review.pseudonim}} - {{review.mail}}</cite>
+		</blockquote>
+	</form>
 	</div>
-	<div id="middle" ng-repeat="comment in main.activeThing.comments">
-		<form name="reviewForm">
-				 <blockquote>
-					 <p><b>Stars: {{comment.grade}}</b></p>
-					 <p>{{comment.context}}</p>
-					 <cite>by: {{comment.pseudonim}} - {{comment.mail}}</cite>
-				 </blockquote>
-		</form>
 </div>
