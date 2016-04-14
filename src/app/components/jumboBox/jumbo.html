@@ -10,36 +10,11 @@
 				</div>
 				<label>Oceń artykuł</label>
 				<div class="form-group">
-					<div class="radio">
-						<label>
-						<input type="radio" name="grade" value="1" ng-model="main.comment.grade">
-						1
-						</label>
-					</div>
-					<div class="radio">
-						<label>
-						<input type="radio" name="grade" value="2" ng-model="main.comment.grade">
-						2
-						</label>
-					</div>
-					<div class="radio">
-						<label>
-						<input type="radio" name="grade" value="3" ng-model="main.comment.grade" checked>
-						3
-						</label>
-					</div>
-					<div class="radio">
-						<label>
-						<input type="radio" name="grade" value="4" ng-model="main.comment.grade">
-						4
-						</label>
-					</div>
-					<div class="radio">
-						<label>
-						<input type="radio" name="grade" value="5" ng-model="main.comment.grade">
-						5
-						</label>
-					</div>
+					<div class="radio-inline"><label><input type="radio" name="grade" value="1" ng-model="main.comment.grade">1</label></div>
+					<div class="radio-inline"><label><input type="radio" name="grade" value="2" ng-model="main.comment.grade">2</label></div>
+					<div class="radio-inline"><label><input type="radio" name="grade" value="3" ng-model="main.comment.grade">3</label></div>
+					<div class="radio-inline"><label><input type="radio" name="grade" value="4" ng-model="main.comment.grade">4</label></div>
+					<div class="radio-inline"><label><input type="radio" name="grade" value="5" ng-model="main.comment.grade">5</label></div>
 				</div>
 					<div id="comment-message" class="form-row" ng-class="{ 'has-error': commentForm.context.$invalid && commentForm.context.$dirty }">
 				<textarea name = "comment" placeholder = "Tutaj wpisz tekst..." id = "comment" ng-model="main.comment.context" required></textarea>
@@ -54,7 +29,7 @@
 
 	<!---Reply Section-->
 
-	<div id="middle" ng-repeat="review in main.activeThing.reviews">{{review | json}}
+	<div id="middle" ng-repeat="review in main.activeThing.document.reviews">{{review | json}}
 	<form name="reviewForm">
 		<blockquote>
 			<p><b>Stars: {{review.grade}}</b></p>
