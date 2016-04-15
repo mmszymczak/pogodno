@@ -1,4 +1,15 @@
-img {
+div.footer img {
 	width: auto;
-    height: auto;
+    height: 100px;
+}
+
+div.footer h4 {
+	text-align : center;
+}
+
+div.col-sm-4 img {
+	position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
 }

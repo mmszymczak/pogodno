@@ -21,6 +21,13 @@
     vm.allDoc = vm.allData.rsp._content.result._content;
     vm.awesomeThings = vm.allDoc;
     vm.go = go;
+    vm.test = test;
+    vm.search = search;
+
+    function test(el){
+        console.log(el);
+    }
+
     // Issuu.const(function(data){ 
     //   //vm.allData = data;
     //   console.log(data);
@@ -47,7 +54,9 @@
       return vm.showJumbo = false;
     }
 
-    function toggleWindow(awesomeThing) {
+    function toggleWindow(awesomeThing, el) {
+        console.log(vm.showJumbo);
+     el ? el : $location.path();
         console.log(awesomeThing);
       if (vm.activeThing === ''){
         vm.showJumbo = !vm.showJumbo;
@@ -60,6 +69,9 @@
       } else {
         vm.activeThing = awesomeThing;
       }
+      vm.go(el);
+      console.log(vm.showJumbo);
+      return vm.showJumbo;
     }
 
     function addReview(product) {
@@ -74,7 +86,10 @@
         $location.path(path);
         $anchorScroll();
     }
-  
-  }
 
+    function search(query){
+        vm.query = query;
+    }
+
+  }
 })();

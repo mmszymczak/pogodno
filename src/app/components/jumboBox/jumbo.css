@@ -143,3 +143,7 @@ input.ng-invalid.ng-dirty {
 input.ng-valid.ng-dirty {
 	border-color: #78FA89;
 }
+
+iframe {
+	magin: auto 0;
+}

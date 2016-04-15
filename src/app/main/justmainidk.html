@@ -1,0 +1,46 @@
+<div class="container">
+
+  <div>
+    <acme-navbar></acme-navbar>
+  </div>
+  <div>
+    <acme-jumbo></acme-jumbo>
+  </div>
+<!--   <div class="row">
+    <div class="col-sm-6 col-md-4" ng-repeat="awesomeThing in main.awesomeThings | orderBy:'rank'" ng-click="main.toggleWindow(awesomeThing)">
+      <div class="thumbnail">
+        <img class="pull-right" ng-src="assets/images/{{ awesomeThing.logo }}" alt="{{ awesomeThing.title }}">
+        <div class="caption">
+          <h3>{{ awesomeThing.title }}</h3>
+          <p>{{ awesomeThing.description }}</p>
+          <p><a ng-href="{{awesomeThing.url}}">{{ awesomeThing.url }}</a></p>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+<!-- <iframe width="525" height="186" src="//e.issuu.com/embed.html#24282877/34900490" frameborder="0" allowfullscreen></iframe> -->
+
+  <div class="row">
+    <div class="col-sm-6 col-md-4" ng-repeat="awesomeThing in main.allDoc | queryFilter: " ng-click="main.toggleWindow(awesomeThing)">
+      <div class="thumbnail">
+        <div class="caption">{{awesomeThing.document}}
+          <h3>{{ awesomeThing.document.title }}</h3>
+          <p>Liczba stron: {{ awesomeThing.document.pageCount }}</p>
+          <p>ID: {{ awesomeThing.document.publicationId | limitTo : 10 }} ...</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!--   <form action="http://api.issuu.com/1_0" method="get"> 
+  <input type="hidden" name="action" value="issuu.document_embed.get_html_code"/> 
+  <input type="hidden" name="apiKey" value="g0ch5rj9ywztlo022w70naymutm2fbbg"/> 
+  <input type="text" name="embedId"/> 
+  <input type="submit" value="Get code"/> 
+</form>  -->
+
+  <div>
+    <acme-footer></acme-footer>
+  </div>
+</div>

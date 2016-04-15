@@ -1,6 +1,6 @@
   <div class="row">
-    <div class="col-sm-6 col-md-4" ng-repeat="awesomeThing in main.allDoc | limitTo : 3" ng-click="main.toggleWindow(awesomeThing)">
-      <div class="thumbnail" ng-click="main.go('/#')">
+    <div class="col-sm-6 col-md-4" ng-repeat="awesomeThing in main.allDoc | limitTo : 3">
+      <div class="thumbnail" ng-click="main.toggleWindow(awesomeThing, '/#')">
         <div class="caption">
           <h3>{{ awesomeThing.document.title }}</h3>
           <p>Liczba stron: {{ awesomeThing.document.pageCount }}</p>

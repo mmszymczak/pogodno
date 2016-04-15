@@ -12,3 +12,8 @@
 .thumbnail img.pull-right {
   width: 50px;
 }
+
+.jumbotroncenter {
+    display: table;
+    margin: 0 auto;	
+}

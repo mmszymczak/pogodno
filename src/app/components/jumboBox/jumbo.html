@@ -1,41 +1,52 @@
-<div class="jumbotron" ng-show="main.showJumbo">
-	<div id='form'>
-		<div class="row Acol-md-12">
-			<form name="commentForm" id="commentform" ng-submit="commentForm.$valid && main.addReview(main.comment)" novalidate>{{main.comment | json}}
-				<div id="comment-name" class="form-row" ng-class="{ 'has-error': commentForm.pseudonim.$invalid && commentForm.pseudonim.$dirty }">
-					<input type = "text" placeholder = "Pseudonim (wymagane)" name = "dname"  id = "name" ng-model="main.comment.pseudonim" required>
+<div ng-show="main.showJumbo">
+
+	<iframe width="525" height="186" src="//e.issuu.com/embed.html#24282877/34927014" frameborder="0" allowfullscreen align="right"></iframe>	
+
+	<form name="commentForm" ng-submit="commentForm.$valid && main.addReview(main.comment)" novalidate>
+		<div class="form-group col-md-4" ng-class="{ 'has-error': commentForm.pseudonim.$invalid && commentForm.pseudonim.$dirty }">
+			<label>Wpisz swój pseudonim:</label>
+			<input type = "text" class="form-control" placeholder = "Pseudonim (wymagane)" name = "dname" ng-model="main.comment.pseudonim" required>
+		</div>
+		
+		<div class="form-group col-md-4" ng-class="{ 'has-error': commentForm.mail.$invalid && commentForm.mail.$dirty }">
+			<label>Wpisz adres e-mail</label>
+			<input type = "email" class="form-control" placeholder = "E-Mail (wymagane)" name = "demail" ng-model="main.comment.mail" required>
+		</div>
+
+		<div class="form-group col-md-4">
+		  <label>Oceń komentarz:</label>
+		  <select class="form-control" ng-model="main.comment.grade">
+		    <option>1</option>
+		    <option>2</option>
+		    <option>3</option>
+		    <option>4</option>
+    		<option>5</option>
+		  </select>
+		</div>
+		
+		<div class="form-group col-md-12" ng-class="{ 'has-error': commentForm.context.$invalid && commentForm.context.$dirty }">
+			<textarea name = "comment" class="form-control col-md-4" rows="5" placeholder = "Tutaj wpisz tekst..."  ng-model="main.comment.context" required></textarea>
+		</div>
+
+		<div class="form-group col-md-12">
+			<input type="submit" class="btn btn-primary" value="Dodaj komentarz">
+			<label class="checkbox-inline">
+			<input type="checkbox" value="1" checked="checked" ng-model="main.comment.subscribe">  Powiadom mnie, jeśli pojawią się nowe komentarze!</label>
+		</div>
+	</form>
+
+	<div ng-repeat="review in main.activeThing.document.reviews">
+		<div class="col-lg-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+				<strong>by: {{review.pseudonim}} - {{review.mail}}</strong> <span class="text-muted">Stars: {{review.grade}}</span>
 				</div>
-				<div id="comment-email" class="form-row" ng-class="{ 'has-error': commentForm.mail.$invalid && commentForm.mail.$dirty }">
-					<input type = "email" placeholder = "E-Mail (wymagane)" name = "demail"  id = "email" ng-model="main.comment.mail" required>
+				<div class="panel-body">
+				{{review.context}}
 				</div>
-				<label>Oceń artykuł</label>
-				<div class="form-group">
-					<div class="radio-inline"><label><input type="radio" name="grade" value="1" ng-model="main.comment.grade">1</label></div>
-					<div class="radio-inline"><label><input type="radio" name="grade" value="2" ng-model="main.comment.grade">2</label></div>
-					<div class="radio-inline"><label><input type="radio" name="grade" value="3" ng-model="main.comment.grade">3</label></div>
-					<div class="radio-inline"><label><input type="radio" name="grade" value="4" ng-model="main.comment.grade">4</label></div>
-					<div class="radio-inline"><label><input type="radio" name="grade" value="5" ng-model="main.comment.grade">5</label></div>
-				</div>
-					<div id="comment-message" class="form-row" ng-class="{ 'has-error': commentForm.context.$invalid && commentForm.context.$dirty }">
-				<textarea name = "comment" placeholder = "Tutaj wpisz tekst..." id = "comment" ng-model="main.comment.context" required></textarea>
-				</div>
-				<input type="submit" name="dsubmit" id="commentSubmit" value="Dodaj komentarz">
-				<input style="width: 30px" type="checkbox" value="1" name="subscribe" id="subscribe" checked="checked" ng-model="main.comment.subscribe">
-				<p1><b>Powiadom mnie, jeśli pojawią się nowe komentarze!</b></p1>
-			</form>
+			</div>
 		</div>
 	</div>
-	<!-- </div> -->
-
-	<!---Reply Section-->
-
-	<div id="middle" ng-repeat="review in main.activeThing.document.reviews">{{review | json}}
-	<form name="reviewForm">
-		<blockquote>
-			<p><b>Stars: {{review.grade}}</b></p>
-			<p>{{review.context}}</p>
-			<cite>by: {{review.pseudonim}} - {{review.mail}}</cite>
-		</blockquote>
-	</form>
 	</div>
+
 </div>
