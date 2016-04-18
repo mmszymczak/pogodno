@@ -3,7 +3,7 @@
   <div>
     <acme-navbar></acme-navbar>
   </div>
-  
+
   <div class="container">
     <div class="jumbotron">
       <div class="jumbotroncenter">
@@ -19,14 +19,16 @@
   </div>
 
   <div class="row">
-    <div class="col-sm-6 col-md-4" ng-repeat="awesomeThing in main.allDoc | filter : main.query" ng-click="main.toggleWindow(awesomeThing)">
+    <div class="col-sm-6 col-md-4" ng-repeat="awesomeThing in main.allDoc | filter : main.query">
+      <a ng-click="main.toggleWindow(awesomeThing)">
       <div class="thumbnail">
         <div class="caption">
           <h3>{{ awesomeThing.document.title }}</h3>
           <p>Liczba stron: {{ awesomeThing.document.pageCount }}</p>
-          <p>ID: {{ awesomeThing.document.publicationId | limitTo : 10 }} ...</a></p>
+          <p>ID: {{ awesomeThing.document.publicationId | limitTo : 10 }} ...</p>
         </div>
       </div>
+    </a>
     </div>
   </div>
 

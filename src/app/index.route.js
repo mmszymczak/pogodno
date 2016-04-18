@@ -22,6 +22,11 @@
         controller: 'MainController',
         controllerAs: 'main'
       })
+      .when('/page/:document?', {
+        templateUrl: '/app/main/pages/main.html',
+        controller: 'MainController',
+        controllerAs: 'main'
+      })
       .otherwise({
         redirectTo: '/'
       });

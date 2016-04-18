@@ -6,7 +6,7 @@
       </a>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
-        <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav" ng-click="main.hideJumbo()">
           <li ng-repeat="navLink in main.navLinks" ng-class="main.navClass('{{navLink.Title}}')"> <a href='#/{{navLink.Title}}'>{{navLink.LinkText}}</a> 
           </li>
         </ul>

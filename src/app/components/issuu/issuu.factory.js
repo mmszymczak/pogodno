@@ -12,13 +12,13 @@ angular.module("pogodno")
 	    {"access" : "public"},
 	    {"responseParams" : ["title","description"]},
 	    {"format" : "json"},
-	    {"pageSize": "100"}
+	    {"pageSize": "33"}
 	    ];
 
 	    var urlIssuu = [
 	    {"apiKey" : "mggx93e5clvkn6om0czhxhu91n2sl416"},
 	    {"format" : "json"},
-	    {"action" : "issuu.document_embeds.list"},
+	    {"action" : "issuu.document_embeds.list"}
 	    ];
 
   
@@ -51,12 +51,9 @@ angular.module("pogodno")
 
   var signature = getMD5(apiSecret, parameters);
 
-  //var signatureUrl = getMD5(apiSecret, urlIssuu);
-
 var requestUrl = "http://api.issuu.com/1_0?" + result4UrlArr.toString() + "&signature=" + signature.toString();
-//var requestUrl1 = "http://api.issuu.com/1_0?" + result4UrlArr.toString() + "&signature=" + signatureUrl.toString();
 	return {
-		all: function(callback) { // Read all todos
+		all: function(callback) { 
 			callback = callback || function(){};
 			return $http({method: 'GET', url: requestUrl })
 			.success(callback)

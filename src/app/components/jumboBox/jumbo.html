@@ -1,6 +1,21 @@
 <div ng-show="main.showJumbo">
-
-	<iframe width="525" height="186" src="//e.issuu.com/embed.html#24282877/34927014" frameborder="0" allowfullscreen align="right"></iframe>	
+	
+	<div>
+    	<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" style="width:420px;height:297px" id="5b265645-0505-0bad-ce44-62430bea7802">
+	        <param name="movie" value="http://static.issuu.com/webembed/viewers/style1/v2/IssuuReader.swf?mode=mini&documentId={{main.id}}" />
+	        <param name="allowfullscreen" value="true"/>
+	        <param name="menu" value="false"/>
+	        <param name="wmode" value="transparent"/>
+	        
+	        <embed src="http://static.issuu.com/webembed/viewers/style1/v2/IssuuReader.swf" 
+	        type="application/x-shockwave-flash" 
+	        allowfullscreen="true" 
+	        menu="false" 
+	        wmode="transparent" 
+	        style="width:420px;height:297px" 
+	        flashvars="mode=mini&documentId={{main.id}}" />
+    	</object>
+	</div>
 
 	<form name="commentForm" ng-submit="commentForm.$valid && main.addReview(main.comment)" novalidate>
 		<div class="form-group col-md-4" ng-class="{ 'has-error': commentForm.pseudonim.$invalid && commentForm.pseudonim.$dirty }">
@@ -14,7 +29,7 @@
 		</div>
 
 		<div class="form-group col-md-4">
-		  <label>Oceń komentarz:</label>
+		  <label>Oceń dokument:</label>
 		  <select class="form-control" ng-model="main.comment.grade">
 		    <option>1</option>
 		    <option>2</option>

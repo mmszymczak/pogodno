@@ -6,14 +6,12 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController(internalDb, Issuu, $location, $anchorScroll) {
+  function MainController($route, $q, internalDb, Issuu, $location, $anchorScroll, $scope, $compile, $routeParams) {
     var vm = this;
     vm.comment = {};
-    //vm.awesomeThings = internalDb.getTec();
-    vm.creationDate = 1460370412681;
-    vm.showJumbo = false;
     vm.toggleWindow = toggleWindow;
     vm.activeThing = '';
+    $scope.showJumbo = false;
     vm.addReview = addReview;
     vm.hideJumbo = hideJumbo;
     vm.allIssuu = {};
@@ -21,17 +19,16 @@
     vm.allDoc = vm.allData.rsp._content.result._content;
     vm.awesomeThings = vm.allDoc;
     vm.go = go;
-    vm.test = test;
     vm.search = search;
+    vm.id = "";
+    vm.refreshPage = false;
+    vm.hashValue = $routeParams;
+    vm.filterRoute = filterRoute;
 
-    function test(el){
-        console.log(el);
-    }
-
-    // Issuu.const(function(data){ 
-    //   //vm.allData = data;
-    //   console.log(data);
-    // });
+    function filterRoute() {
+    console.log(vm.hashValue);
+    console.log($location.path());
+    };
 
     vm.navLinks = [{
         Title: '',
@@ -54,24 +51,44 @@
       return vm.showJumbo = false;
     }
 
+    function showJumbo() {
+      return vm.showJumbo = true;
+    }
+
+    function toggleJumbo() {
+      return vm.showJumbo = !vm.showJumbo;
+    }
+
+
     function toggleWindow(awesomeThing, el) {
-        console.log(vm.showJumbo);
-     el ? el : $location.path();
-        console.log(awesomeThing);
-      if (vm.activeThing === ''){
-        vm.showJumbo = !vm.showJumbo;
+
+        if (vm.activeThing === ''){
+        toggleJumbo();
         vm.activeThing = awesomeThing;
+        console.log(1);
+        console.log(vm.showJumbo);
       } else if (awesomeThing.document.documentId === vm.activeThing.document.documentId){
         vm.showJumbo = !vm.showJumbo;
+        console.log(2);
       } else if (!vm.showJumbo) {
         vm.activeThing = awesomeThing;
         vm.showJumbo = !vm.showJumbo;
+        console.log(3);
+
       } else {
-        vm.activeThing = awesomeThing;
+        vm.activeThing = awesomeThing;        
+        console.log(4);
       }
-      vm.go(el);
-      console.log(vm.showJumbo);
-      return vm.showJumbo;
+
+      $location.href = vm.activeThing.document.revisionId;
+       // $route.reload('$location.href');      // ng-href="#/page/{{ awesomeThing.document.revisionId }}"
+      // $scope.watch("showJumbo", function(newVal, oldVal){
+      //   if ($scope.showJumbo)
+      // })
+      vm.id = vm.activeThing.document.documentId;
+
+      // vm.refreshPage = true;
+      // return vm.showJumbo;
     }
 
     function addReview(product) {
