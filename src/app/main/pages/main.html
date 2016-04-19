@@ -15,12 +15,12 @@
   </div>
   
   <div>
-    <acme-jumbo></acme-jumbo>
+    <acme-jumbo ng-show="main.showJumbo"></acme-jumbo>
   </div>
 
   <div class="row">
     <div class="col-sm-6 col-md-4" ng-repeat="awesomeThing in main.allDoc | filter : main.query">
-      <a ng-click="main.toggleWindow(awesomeThing)">
+      <a href="/#/pages/{{awesomeThing.document.documentId}}">
       <div class="thumbnail">
         <div class="caption">
           <h3>{{ awesomeThing.document.title }}</h3>

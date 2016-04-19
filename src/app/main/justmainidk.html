@@ -1,11 +1,11 @@
-<div class="container">
+<!-- <div class="container">
 
   <div>
     <acme-navbar></acme-navbar>
   </div>
   <div>
     <acme-jumbo></acme-jumbo>
-  </div>
+  </div> -->
 <!--   <div class="row">
     <div class="col-sm-6 col-md-4" ng-repeat="awesomeThing in main.awesomeThings | orderBy:'rank'" ng-click="main.toggleWindow(awesomeThing)">
       <div class="thumbnail">
@@ -21,7 +21,7 @@
 
 <!-- <iframe width="525" height="186" src="//e.issuu.com/embed.html#24282877/34900490" frameborder="0" allowfullscreen></iframe> -->
 
-  <div class="row">
+<!--   <div class="row">
     <div class="col-sm-6 col-md-4" ng-repeat="awesomeThing in main.allDoc | queryFilter: " ng-click="main.toggleWindow(awesomeThing)">
       <div class="thumbnail">
         <div class="caption">{{awesomeThing.document}}
@@ -31,7 +31,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
 <!--   <form action="http://api.issuu.com/1_0" method="get"> 
   <input type="hidden" name="action" value="issuu.document_embed.get_html_code"/> 
@@ -40,7 +40,62 @@
   <input type="submit" value="Get code"/> 
 </form>  -->
 
-  <div>
+<!--   <div>
     <acme-footer></acme-footer>
   </div>
-</div>
+</div> -->
+
+
+   <!-- //     if (vm.activeThing === ''){
+    //         vm.activeThing = awesomeThing.document.documentId;
+    //         showJumbo();
+    // }
+
+
+// $routeParams.documentId = awesomeThing.document.documentId;
+//         console.log(awesomeThing.document.documentId);
+//         console.log($routeParams);
+
+//         if(!vm.activeThing){
+//             showJumbo();
+//             vm.activeThing = awesomeThing.document;
+//             console.log(vm.activeThing.documentId, awesomeThing.document.documentId);
+//         } else if (vm.showJumbo === true && vm.activeThing.documentId === awesomeThing.document.documentId) {
+//             hideJumbo();
+//             vm.activeThing = {};
+//             console.log(vm.activeThing.documentId, awesomeThing.document.documentId);
+//         }
+// console.log(vm.activeThing);
+    // console.log(1,vm.activeThing);
+    // console.log(2, $routeParams.documentId);
+    // 
+    // if (vm.activeThing === ''){
+    //     vm.activeThing = awesomeThing.document.documentId;
+    //     showJumbo();
+    // } else if (awesomeThing.document.documentId === vm.activeThing){
+    //     toggleJumbo();
+    // } else if (!vm.showJumbo) {
+    //     vm.activeThing = awesomeThing;
+    //     toggleJumbo();
+    // } else {
+    //     showJumbo();
+    //     vm.activeThing = awesomeThing;       
+    // }
+    
+      //vm.id = vm.activeThing;
+
+ -->
+  <!--      <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" style="width:420px;height:297px" id="5b265645-0505-0bad-ce44-62430bea7802">
+          <param name="movie" value="http://static.issuu.com/webembed/viewers/style1/v2/IssuuReader.swf?mode=mini&documentId={{vm.activeThing.document.documentId}}" />
+          <param name="allowfullscreen" value="true"/>
+          <param name="menu" value="false"/>
+          <param name="wmode" value="transparent"/>
+          
+          <embed src="http://static.issuu.com/webembed/viewers/style1/v2/IssuuReader.swf" 
+          type="application/x-shockwave-flash" 
+          allowfullscreen="true" 
+          menu="false" 
+          wmode="transparent" 
+          style="width:420px;height:297px" 
+          flashvars="mode=mini&documentId={{vm.activeThing.document.documentId}}" />
+      </object> -->

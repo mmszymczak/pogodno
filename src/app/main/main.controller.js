@@ -8,12 +8,13 @@
   /** @ngInject */
   function MainController($route, $q, internalDb, Issuu, $location, $anchorScroll, $scope, $compile, $routeParams) {
     var vm = this;
+    vm.hashValue = $routeParams.filter;
+    vm.acmeDb = {};
     vm.comment = {};
-    vm.toggleWindow = toggleWindow;
     vm.activeThing = '';
-    $scope.showJumbo = false;
     vm.addReview = addReview;
     vm.hideJumbo = hideJumbo;
+    vm.showJumbo = false;
     vm.allIssuu = {};
     vm.allData = Issuu.const();
     vm.allDoc = vm.allData.rsp._content.result._content;
@@ -22,13 +23,15 @@
     vm.search = search;
     vm.id = "";
     vm.refreshPage = false;
-    vm.hashValue = $routeParams;
-    vm.filterRoute = filterRoute;
+    vm.awesomeThingCurrent;
+    vm.temp = {"rsp":{"_content":{"document":{"username":"lekkim","name":"racing","documentId":"090623122351-f691a27cfd744b80b25a2c8f5a51d596","title":"Race cars","access":"public","state":"P","category":"012000","type":"009000","origin":"singleupload","pageCount":0,"ep":1245759831,"description":"Race cars of Le Man 2009","tags":["cars","le man","racing"],"folders":["3935f331-5d5b-4694-86ce-6f26c6dee809"]}},"stat":"ok"}};
+    console.log(vm.temp);
 
-    function filterRoute() {
-    console.log(vm.hashValue);
-    console.log($location.path());
-    };
+    console.log(vm.allDoc);
+    console.log(vm.activeThing);
+    // Issuu.all(function(data){
+    //     vm.allDoc = data;
+    // });
 
     vm.navLinks = [{
         Title: '',
@@ -46,62 +49,38 @@
         return page === currentRoute ? 'active' : '';
     };
 
-
     function hideJumbo() {
       return vm.showJumbo = false;
     }
 
-    function showJumbo() {
-      return vm.showJumbo = true;
-    }
+    $scope.$on("$routeChangeSuccess", function () {
+        vm.allDoc.forEach(function(element,index,array){
+            if (element.document.documentId === $location.path().substring(7)) {
+                vm.activeThing = vm.allDoc[index];
+                vm.showJumbo = true;
+                $scope.activeIssuuId = vm.activeThing.document.documentId;
+            }
+        });
+    });
 
-    function toggleJumbo() {
-      return vm.showJumbo = !vm.showJumbo;
-    }
-
-
-    function toggleWindow(awesomeThing, el) {
-
-        if (vm.activeThing === ''){
-        toggleJumbo();
-        vm.activeThing = awesomeThing;
-        console.log(1);
-        console.log(vm.showJumbo);
-      } else if (awesomeThing.document.documentId === vm.activeThing.document.documentId){
-        vm.showJumbo = !vm.showJumbo;
-        console.log(2);
-      } else if (!vm.showJumbo) {
-        vm.activeThing = awesomeThing;
-        vm.showJumbo = !vm.showJumbo;
-        console.log(3);
-
-      } else {
-        vm.activeThing = awesomeThing;        
-        console.log(4);
-      }
-
-      $location.href = vm.activeThing.document.revisionId;
-       // $route.reload('$location.href');      // ng-href="#/page/{{ awesomeThing.document.revisionId }}"
-      // $scope.watch("showJumbo", function(newVal, oldVal){
-      //   if ($scope.showJumbo)
-      // })
-      vm.id = vm.activeThing.document.documentId;
-
-      // vm.refreshPage = true;
-      // return vm.showJumbo;
+    function go(path){
+        $location.path(path);
+        $anchorScroll();
     }
 
     function addReview(product) {
         if (!vm.activeThing.document.reviews){
             vm.activeThing.document.reviews = [];
         }
-        vm.activeThing.document.reviews.push(product);
+        //product.id = vm.activeThing.document.documentId;
+        //vm.acmeDb.comments.push(product);
+        console.log(vm.acmeDb);
+        vm.acmeDb['data'].push({"teamId":"4","status":"pending"});
+        var jsonStr = JSON.stringify(vm.acmeDb);
+        console.log(jsonStr);
+        // vm.activeThing.document.reviews.push(product);
+        // console.log(vm.activeThing);
         vm.comment = {};
-    }
-
-    function go(path){
-        $location.path(path);
-        $anchorScroll();
     }
 
     function search(query){

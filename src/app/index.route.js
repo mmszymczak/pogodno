@@ -22,7 +22,7 @@
         controller: 'MainController',
         controllerAs: 'main'
       })
-      .when('/page/:document?', {
+      .when('/pages/:documentId', {
         templateUrl: '/app/main/pages/main.html',
         controller: 'MainController',
         controllerAs: 'main'
