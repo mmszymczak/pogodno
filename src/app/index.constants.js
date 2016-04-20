@@ -5,6 +5,7 @@
   angular
     .module('pogodno')
     .constant('malarkey', malarkey)
-    .constant('moment', moment);
+    .constant('moment', moment)
+    .constant('firebaseUrl', 'https://pogodnodb.firebaseio.com/');
 
 })();
