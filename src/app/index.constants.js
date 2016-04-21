@@ -6,6 +6,6 @@
     .module('pogodno')
     .constant('malarkey', malarkey)
     .constant('moment', moment)
-    .constant('firebaseUrl', 'https://pogodnodb.firebaseio.com/');
+    .constant('firebaseUrl', 'https://pogodno.firebaseio.com/');
 
 })();

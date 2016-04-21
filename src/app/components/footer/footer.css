@@ -1,6 +1,6 @@
-div.footer img {
+div.content img {
 	width: auto;
-    height: 100px;
+    height: 150px;
 }
 
 div.footer h4 {
@@ -12,4 +12,10 @@ div.col-sm-4 img {
     margin: auto;
     left: 0;
     right: 0;
+}
+
+div.box {
+	height: 200px;
+	background-color: #e5f2e5;
+	text-align: center;
 }

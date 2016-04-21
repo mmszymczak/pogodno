@@ -9,19 +9,22 @@
   function MainController($route, $q, internalDb, Issuu, $location, $anchorScroll, $scope, $compile, $routeParams, firebaseUrl, $firebaseArray, $timeout) {
     //MainController['$inject'] = ['firebaseUrl']; 
     
-// Issuu.all()
-//         .then(
-//             function (result) {
-//                 $timeout(function(){
-//                     vm.allIssuu = result;
-//                 }, 5000);
-//             },
-//             function (error) {
-//                 console.log(error.statusText);
-//             }
-//         );
+    console.log(Issuu.all());
 
-//         console.log(vm.allIssuu);
+    Issuu.all()    
+        .then(
+            // function (result) {
+            //     $timeout(function(){
+            //         vm.allIssuu = result;
+            //         console.log(result);
+            //     }, 5000);
+            // },
+            function (error) {
+                console.log(error.statusText);
+            }
+        );
+
+        //console.log(vm.allIssuu);
 
 
 
@@ -47,25 +50,89 @@
 
 
 
+var coverCuriosities = [
+    { "coverCuriosities" :"Totemy dla zastępów ze 'Skautingu dla Chłopców'"},
+    { "coverCuriosities" :"Nogi Sharon Stone"},
+    { "coverCuriosities" : undefined },
+    { "coverCuriosities" : undefined },
+    { "coverCuriosities" :"Sałatka.exe"},
+    { "coverCuriosities" :"Miejsca opuszczone przez środowiska starszoharcerskie hufca"},
+    { "coverCuriosities" :"Ścieżkami zdrowia"},
+    { "coverCuriosities" :"Prace nad Statutem"},
+    { "coverCuriosities" :"Jestem harcerką!"},
+    { "coverCuriosities" :"A jednak się kręci (pogodno.exe)"},
+    { "coverCuriosities" :"Gotowe na wszystko (Desperate Girl Guides)"},
+    { "coverCuriosities" :"Przebłyski strategii (sałatka.exe 2008)"},
+    { "coverCuriosities" :"Jerzy śni o Maćku..."},
+    { "coverCuriosities" :"Wanted"},
+    { "coverCuriosities" :"Znajdź swoją drogę"},
+    { "coverCuriosities" :"Floating Pogodno"},
+    { "coverCuriosities" :"Ostatnio"},
+    { "coverCuriosities" :"Zapłać u mnie składki!"},
+    { "coverCuriosities" :"Dziesiątka pół-wysoka"},
+    { "coverCuriosities" :"Układ okresowy pierwiastków"},
+    { "coverCuriosities" :"Druh komendant Czuwa!"},
+    { "coverCuriosities" :"Biblioteczka exe!"},
+    { "coverCuriosities" :"Opowieść wigilijna"},
+    { "coverCuriosities" :"Pokolenie exe"},
+    { "coverCuriosities" :"Hairmaster"},
+    { "coverCuriosities" :"Kiedy drużynowy się nudzi..."},
+    { "coverCuriosities" :"Przepowiednia na koniec świata"},
+    { "coverCuriosities" :"exe HISTORIA"},
+    { "coverCuriosities" :"Katastrofa?"},
+    { "coverCuriosities" :"Pieczątki"},
+    { "coverCuriosities" :"Hetman na c1"},
+    { "coverCuriosities" :"Czas leczy rany"},
+    { "coverCuriosities" :"1444"},
+];
+
+function pad(d) {
+    return (d < 10) ? '0' + d.toString() : d.toString();
+}
+
     if (!vm.acmeDb) { vm.acmeDb = {}; 
         if (!vm.acmeDb._content) { 
             vm.acmeDb._content = [];
             vm.allDoc.forEach(function(element,index){
                 vm.acmeDb._content[index] = {};
-                if (!vm.acmeDb._content[index].reviews) { 
-                    vm.acmeDb._content[index].reviews = [];
+                vm.acmeDb._content[index].document = {};
+
+                if (!vm.acmeDb._content[index].document.reviews) { 
+                    vm.acmeDb._content[index].document.reviews = [];
+                    if (coverCuriosities[index].coverCuriosities !== undefined) {
+                        vm.acmeDb._content[index].document.coverCuriosities = coverCuriosities[index].coverCuriosities;
+                    }
+                        vm.acmeDb._content[index].document.coverID = pad(index+1);
+                        vm.acmeDb._content[index].document.title = element.document.title;
+                        vm.acmeDb._content[index].document.pageCount = element.document.pageCount;
+                        vm.acmeDb._content[index].document.created = element.document.created;
+
                 }
-                vm.acmeDb._content[index].id = element.document.documentId;
+                vm.acmeDb._content[index].document.id = element.document.documentId;
             });   
+
+            // console.log(vm.acmeDb);
+            // ref.set(vm.acmeDb);
+                //             var reviewsRef = ref.child('_content/'+ vm.currentDocumentIndex + 'document/reviews');
+                // vm.messages = $firebaseArray(ref);
+                // vm.messages.$add(vm.acmeDb);
         }
     }
 
     function resetDatabase(){
-        ref.set(vm.acmeDb);
-    }
+        var json = JSON.stringify(vm.acmeDb._content, function( key, value ) {
+            if( key === "$$hashKey" ) {
+                return undefined;
+            }
+            return value;
+        });
 
+        var finalData = angular.fromJson(json); 
 
-        var reviewsRef = ref.child('_content/'+ vm.currentDocumentIndex + '/reviews');
+        var reviewsRef = ref.child('_content/');
+        reviewsRef.set(finalData);
+};
+        
         
 
 /////////////// Navbar ////////////////////////////////////////
@@ -93,13 +160,15 @@
 
     $scope.$on("$routeChangeSuccess", function () {
         vm.acmeDb._content.forEach(function(element,index,array){
-            if (element.id === $location.path().substring(7)) {
-                vm.activeThing = vm.acmeDb._content[index];
+            if (element.document.id === $location.path().substring(7)) {
+                vm.activeThing = vm.acmeDb._content[index].document;
                 vm.showJumbo = true;
-                $scope.activeIssuuId = vm.acmeDb._content[index].id;
-                $anchorScroll();
+                console.log(vm.acmeDb._content[index].document)
+                $scope.activeIssuuId = vm.acmeDb._content[index].document.id;
+                $anchorScroll(vm.acmeDb._content[index].document);
                 vm.currentDocumentIndex = index;
-                var reviewsRef = ref.child('_content/'+ vm.currentDocumentIndex + '/reviews');
+                console.log(vm.acmeDb);
+                var reviewsRef = ref.child('_content/'+ vm.currentDocumentIndex + '/document/reviews');
                 vm.messages = $firebaseArray(reviewsRef);
             }
         });
@@ -115,11 +184,10 @@
         console.log(vm.review);
 
 
-        var reviewsRef = ref.child('_content/'+ vm.currentDocumentIndex + '/reviews');
+        var reviewsRef = ref.child('_content/'+ vm.currentDocumentIndex + '/document/reviews');
         
         vm.messages = $firebaseArray(reviewsRef);
         vm.messages.$add(vm.review);
-        console.log(vm.messages);
 
         vm.review = {};
 

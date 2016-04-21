@@ -6,7 +6,7 @@
 }
 
 .thumbnail {
-  height: 200px;
+  height: 300px;
 }
 
 .thumbnail img.pull-right {
@@ -17,3 +17,35 @@
     display: table;
     margin: 0 auto;	
 }
+
+div.caption img {
+	height: 450%;
+	width: auto;
+	position: absolute; 
+	right: 0; 
+	bottom: 100; 
+}
+
+div.caption { 
+	position: relative; 
+	height: 24px;
+}
+
+p.date {
+	height: 450%;
+	width: auto;
+	position: absolute; 
+	left: 200px; 
+	top: 200px; 
+}
+
+html,body {
+	background: #7fbf7f;
+}
+
+/*.jumbotron {
+	height: px;
+	position: absolute; 
+	z-index: 1000
+}*/
+
