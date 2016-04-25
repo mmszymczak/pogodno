@@ -43,9 +43,17 @@ html,body {
 	background: #7fbf7f;
 }
 
+.active {
+	border-color: #7F6536;
+    border-top-width: 12px;
+    border-bottom-width: 12px;
+}
+
+
 /*.jumbotron {
 	height: px;
 	position: absolute; 
 	z-index: 1000
 }*/
+
 

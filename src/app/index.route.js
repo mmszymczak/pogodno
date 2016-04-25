@@ -10,7 +10,15 @@
       .when('/', {
         templateUrl: '/app/main/pages/main.html',
         controller: 'MainController',
-        controllerAs: 'main'
+        controllerAs: 'main',
+        //resolve: MainController.resolve
+        resolve: {
+        init: function(Issuu) {
+            console.log(Issuu.all());
+            return Issuu.all();
+        }
+        },
+        resolveAs: 'dataIssuu'
       })
       .when('/team', {
         templateUrl: '/app/main/pages/team.html',
