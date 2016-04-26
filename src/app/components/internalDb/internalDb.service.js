@@ -9,35 +9,37 @@
   function internalDb() {
     var vm = this;
     
-    vm.setData = setData;
-    vm.getData = getData;
-    vm.setIssuu = setIssuu;
-    vm.getIssuu = getIssuu;
+    vm.setPage = setPage;
+    vm.getPage = getPage;
+    vm.getTotalNumPage = getTotalNumPage;
+    vm.setTotalNumPage = setTotalNumPage;
 
-    vm.currentPage;
+    vm.currentPage = 1;
+    vm.totalNumPage;
     vm.issuuData = {}
 
-    function getData() {
-      return vm.data;
+    function getPage() {
+      return vm.currentPage;
     }
 
-    function setData(element) {
-      vm.data = element
+    function setPage(element) {
+      vm.currentPage = element
     }
 
-    function setIssuu(element) {
-      vm.issuuData = element
+    function getTotalNumPage() {
+      return vm.totalNumPage;
     }
 
-    function getIssuu(){
-      return vm.issuuData;
+    function setTotalNumPage(element) {
+      vm.totalNumPage = element
     }
+
 
     return {
-      getData : getData,
-      setData : setData,
-      getIssuu : getIssuu,
-      setIssuu : setIssuu
+      getPage : getPage,
+      setPage : setPage,
+      getTotalNumPage : getTotalNumPage,
+      setTotalNumPage : setTotalNumPage
     }
   }
 
