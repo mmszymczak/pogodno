@@ -7,24 +7,14 @@ angular.module("pogodno")
 	var resultArr = [];
 	var result4UrlArr = [];
 	var apiSecret = "njahaaif2fwye9k3pgom9dzes8zq342z";
-	var parameters4numPages = [
-	{"action" : "issuu.documents.list"},
-	{"apiKey" : "mggx93e5clvkn6om0czhxhu91n2sl416"},
-	{"access" : "public"},
-	{"format" : "json"},
-	{"startIndex" : "6"},
-	{"pageSize": "6"}
-	];
-
 	var parameters = [
 	{"action" : "issuu.documents.list"},
 	{"apiKey" : "mggx93e5clvkn6om0czhxhu91n2sl416"},
 	{"access" : "public"},
-	// {"responseParams" : },
+	{"responseParams" : ["title","description"]},
 	{"format" : "json"},
-	{"pageSize": "0"}
+	{"pageSize": "33"}
 	];
-
 
 	function getMD5(element, parameters){
 		resultArr = []; result4UrlArr = [];
@@ -45,15 +35,8 @@ angular.module("pogodno")
 	return [CryptoJS.MD5(element.concat(resultArr)).toString(),result4UrlArr.toString()];	
 	}
 
-	var signature4numPages = getMD5(apiSecret, parameters4numPages);
-	var requestUrl = "http://api.issuu.com/1_0?" + signature4numPages[1] + "&signature=" + signature4numPages[0];
-
-	// var signature = getMD5(apiSecret, parameters);
-	// var requestUrl = "http://api.issuu.com/1_0?" + signature[1] + "&signature=" + signature[0];
-
-	// var signature = getMD5(apiSecret, parameters);
-	// var requestUrl = "http://api.issuu.com/1_0?" + signature[1] + "&signature=" + signature[0];
-
+	var signature = getMD5(apiSecret, parameters);
+	var requestUrl = "http://api.issuu.com/1_0?" + signature[1] + "&signature=" + signature[0];
 
     var promise = $http.get(requestUrl).success(function (data) {
       myData = data;
