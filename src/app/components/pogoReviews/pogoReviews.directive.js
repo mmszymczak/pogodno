@@ -3,15 +3,18 @@
 
   angular
     .module('pogodno')
-    .directive('acmeFooter', acmeFooter);
+    .directive('pogoReviews', pogoReviews);
 
   /** @ngInject */
-  function acmeFooter() {
+  function pogoReviews() {
     var directive = {
       restrict: 'E',
-      templateUrl: 'app/components/footer/footer.html',
+      templateUrl: 'app/components/pogoReviews/pogoReviews.html'
     };
+
     return directive;
+
+    /** @ngInject */
   }
 
 })();

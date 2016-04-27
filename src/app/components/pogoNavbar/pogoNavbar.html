@@ -1,4 +1,3 @@
-<div class="container">
 <nav class="navbar navbar-static-top navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -8,8 +7,7 @@
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
         <ul class="nav navbar-nav" ng-click="main.hideJumbo()">
-          <li ng-repeat="navLink in main.navLinks" ng-class="main.navClass('{{navLink.Title}}')"> <a href='#/{{navLink.Title}}'>{{navLink.LinkText}}</a> 
-          </li>
+          <li ng-repeat="navLink in main.navLinks" ng-class="main.navClass('{{navLink.Title}}')"> <a href='#/{{navLink.Title}}'>{{navLink.LinkText}}</a></li>
         </ul>
       <form class="navbar-form navbar-right" role="search">
         <!-- <button class="btn btn-default" ng-click="main.resetDatabase()">Reset Database</button> -->
@@ -19,6 +17,5 @@
     </div>
   </div>
 </nav>
-</div>
 
 

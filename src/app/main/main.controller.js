@@ -6,13 +6,13 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($route, $q, toastr, internalDb, Issuu, $location, $anchorScroll, $scope, $compile, $routeParams, firebaseUrl, $firebaseArray, $firebaseAuth, $rootScope, $timeout) {
-
-
-    $scope.data = Issuu.doStuff();
-    internalDb.setTotalNumPage($scope.data.rsp._content.result.totalCount);
-
+  function MainController($route, $q, toastr, internalDb, IssuuFactory, $location, $anchorScroll, $scope, $compile, $routeParams, firebaseUrl, $firebaseArray, Firebase) {
+    
     var vm = this;
+    vm.data = IssuuFactory.doStuff();
+    internalDb.setTotalNumPage(vm.data.rsp._content.result.totalCount);
+
+    
     var ref = new Firebase(firebaseUrl);
 
     vm.totalNumPages = internalDb.getTotalNumPage();
@@ -24,10 +24,9 @@
     vm.addReview = addReview;
     vm.hideJumbo = hideJumbo;
     vm.showJumbo = false;
-    vm.resetDatabase = resetDatabase;
     vm.isActive = isActive;
 
-    vm.allDoc = $scope.data.rsp._content.result._content;
+    vm.allDoc = vm.data.rsp._content.result._content;
 
     vm.go = go;
     vm.awesomeThingCurrent;
@@ -35,30 +34,24 @@
     vm.currentPagePagination;
     vm.changePagePagination = changePagePagination;
 
-    $scope.currentPage = internalDb.getPage();
+    vm.currentPage = internalDb.getPage();
     vm.pageSize = 6;
+    vm.pageChangeHandler = pageChangeHandler;
 
-    console.log(vm.allDoc);
-    console.log($scope.data);
-
-    $scope.pageChangeHandler = function(num) {
-    internalDb.setPage(num);
-    };
+    function pageChangeHandler(num) {
+        internalDb.setPage(num);
+    }
 
     function login(){
-        console.log(ref);
         vm.dataLoading = true;
-            console.log(vm.username, vm.password);
           ref.authWithPassword({
           email    : vm.username,
           password : vm.password
-        }, function(error, authData) {
+        }, function(error) {    // authData param
           if (error) {
-            console.log("Login Failed!", error);
             toastr.error('Oj... Coś poszło nie tak.');
             vm.dataLoading = false;
           } else {
-            console.log("Authenticated successfully with payload:", authData);
             toastr.success('Pomyślna próba zalogowania!');
             $location.path('/');
           }
@@ -136,7 +129,7 @@
             "Krucjata",
             "Requiem",
             "Opowiadanie z cyklu: niesamowite historie",
-            "Pamiętnik Jamesa Bonda",
+            "Pamiętnik Jamesa Bonda"
           ]
         },
         { "coverCuriosities" : "Miejsca opuszczone przez środowiska starszoharcerskie hufca",
@@ -309,7 +302,7 @@
             "\"Sznur granatowy\" - Marta Mużyło o zlocie drużynowych",
             "\"Umarli ratują żywych\" - Jakub Dudziński o transplantacji",
             "\"Spal Buty\" - Zuzanna Szklarska o rajdzie hufca",
-            "\"Spowiedź drużynowej\" - Agnieszka Kołodziejczyk",
+            "\"Spowiedź drużynowej\" - Agnieszka Kołodziejczyk"
           ]
         },
         { "coverCuriosities" :"Zapłać u mnie składki!",
@@ -321,7 +314,7 @@
             "\"Kursowa Watra zapłonęła\" - kursanci Kursu Zastępowych Watra IX",
             "\"Wsłuchany w twą cichą piosenkę\" - Maciej Grabowski o koncercie Wolnej Grupy Bukowina",
             "\"Tam, gdzie wciąż jesteśmy\" - Monika Nowicka o huśtawce i o miejscu",
-            "\"Osobiście\" - Paulina Steier o drodze do zwycięstwa",
+            "\"Osobiście\" - Paulina Steier o drodze do zwycięstwa"
           ]
         },
         { "coverCuriosities" :"Dziesiątka pół-wysoka",
@@ -567,7 +560,7 @@
             "\"O tym jak T.R.E.K pojechał do Wilna\" - Małgorzata Celińska na temat wycieczki Harcerskiego Kręgu Akademickiego za granicę.",
             "\"Druh i Druhna\" - Ewa Kołodziejczyk o kropce w skrócie dh",
             "\"To wakacje, pełny luz\" - Dorota Szymańska o wakacjach",
-            "\"Śladem Starego Doktora. Antologia (3)\" - kilka słów o Januszu Korczaku",
+            "\"Śladem Starego Doktora. Antologia (3)\" - kilka słów o Januszu Korczaku"
           ]
         },
         { "coverCuriosities" :"1444",
@@ -582,7 +575,7 @@
             "\"Moje odczucia SPINAKER 2015\" - Karolina Gabryś",
             "\"Jak fajne\" - Edyta Sielicka (Siwińska)"
           ]
-        },
+        }
     ];
 ////// Data to save on firebase ///////////////////////////////
 
@@ -591,12 +584,11 @@
     }
 
     $scope.$on("$routeChangeSuccess", function () {
-        vm.acmeDb._content.forEach(function(element,index,array){
+        vm.acmeDb._content.forEach(function(element,index){
             if (element.document.id === $location.path().substring(7)) {
                 vm.activeThing = vm.acmeDb._content[index].document;
-                console.log(vm.activeThing);
                 vm.showJumbo = true;
-                $scope.activeIssuuId = vm.acmeDb._content[index].document.id;
+                vm.activeIssuuId = vm.acmeDb._content[index].document.id;
                 $anchorScroll(vm.acmeDb._content[index].document);
                 vm.currentDocumentIndex = index;
                 var reviewsRef = ref.child('_content/'+ vm.currentDocumentIndex + '/document/reviews');
@@ -604,7 +596,7 @@
             }
         });
 
-        if(!!$location.path().substring(1)) {
+        if($location.path().substring(1)) {
             vm.showHeader = false;
         } else {
             vm.showHeader = true;
@@ -658,18 +650,18 @@
     };
 /////////////// Navbar ////////////////////////////////////////
 
-    function resetDatabase() {
-        var json = JSON.stringify(vm.acmeDb._content, function( key, value ) {
-            if( key === "$$hashKey" ) {
-                return undefined;
-            }
-            return value;
-        });
+    // function resetDatabase() {
+    //     var json = JSON.stringify(vm.acmeDb._content, function( key, value ) {
+    //         if( key === "$$hashKey" ) {
+    //             return undefined;
+    //         }
+    //         return value;
+    //     });
 
-        var finalData = angular.fromJson(json);
-        var reviewsRef = ref.child('_content/');
-        reviewsRef.set(finalData);
-    }
+    //     var finalData = angular.fromJson(json);
+    //     var reviewsRef = ref.child('_content/');
+    //     reviewsRef.set(finalData);
+    // }
 
     function hideJumbo() {
       return vm.showJumbo = false;
@@ -677,7 +669,7 @@
 
     function isActive(item) {
         return vm.activeThing.id === item;
-    };
+    }
 
     function go(path)  {
         $location.path(path);

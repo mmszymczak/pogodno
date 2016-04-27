@@ -3,18 +3,15 @@
 
   angular
     .module('pogodno')
-    .directive('acmeNavbar', acmeNavbar);
+    .directive('pogoFooter', pogoFooter);
 
   /** @ngInject */
-  function acmeNavbar() {
+  function pogoFooter() {
     var directive = {
       restrict: 'E',
-      templateUrl: 'app/components/navbar/navbar.html',
+      templateUrl: 'app/components/pogoFooter/pogoFooter.html'
     };
-
     return directive;
-
-    /** @ngInject */
   }
 
 })();

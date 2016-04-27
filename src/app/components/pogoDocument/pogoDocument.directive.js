@@ -3,13 +3,13 @@
 
   angular
     .module('pogodno')
-    .directive('acmeJumbo', acmeJumbo);
+    .directive('pogoDocument', pogoDocument);
 
   /** @ngInject */
-  function acmeJumbo() {
+  function pogoDocument() {
     var directive = {
       restrict: 'E',
-      templateUrl: 'app/components/jumboBox/jumbo.html'
+      templateUrl: 'app/components/pogoDocument/pogoDocument.html'
     };
     return directive;
   }

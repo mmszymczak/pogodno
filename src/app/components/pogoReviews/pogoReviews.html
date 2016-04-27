@@ -1,51 +1,3 @@
-<div>
-	<div>
-    	<jumbo-directive documentId="{{activeIssuuId}}"></jumbo-directive>
-	</div>
-<div class="jumbotron">
-	<section ng-init="main.selectPage=0">
-		<ul class="nav nav-tabs">
-		  <li><a href ng-click="main.selectPage=0" init><h2>O Wydaniu</h2></a></li>
-		  <li><a href ng-click="main.selectPage=1"><h2>Udostępnij</h2></a></li>
-		  <li><a href ng-click="main.selectPage=2"><h2>Komentarze</h2></a></li>
-		</ul>
-	</section>
-
-	<div class="jumbotron" ng-if="main.selectPage === 0">
-	<div class="row">
-	<!-- {{main.activeThing}} -->
-		<div class="col-sm-4">
-			<h4>Tytuł:</h4>
-			<p>{{main.activeThing.title}}</p>
-		</div>
-		<div class="col-sm-4">
-			<h4>Data dodania:</h4>
-			<p>{{main.activeThing.created | date}}</p>
-		</div>
-		<div class="col-sm-4">
-			<h4>Liczba stron:</h4>
-			<p>{{main.activeThing.pageCount}}</p>
-		</div>
-		<div class="col-sm-12">
-			<h4>Okładka:</h4>
-			<p>{{main.activeThing.coverCuriosities}}</p>
-		</div>
-		<div class="col-md-12">
-			<h4>Artykuły</h4>
-      <ul>
-  			 <li ng-repeat="post in main.activeThing.posts" ><p>{{post}}</p></li>
-      </ul>
-		</div>
-	</div>
-	</div>
-
-
-	<div ng-if="main.selectPage === 1">
-		<div class="col-md-12">blabla facebook (sroda wieczor)</div>
-	</div>
-
-
-<div ng-if="main.selectPage === 2">
 	<div class="row">
 		<form name="commentForm" ng-submit="commentForm.$valid && main.addReview(main.review)" novalidate>
 			<div class="form-group col-md-4" ng-class="{ 'has-error': commentForm.pseudonim.$invalid && commentForm.pseudonim.$dirty }">
@@ -93,7 +45,3 @@
 		</div>
 		</div>
 	</div>
-</div>
-
-</div>
-</div>

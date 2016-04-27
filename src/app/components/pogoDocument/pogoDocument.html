@@ -1,0 +1,22 @@
+<div>
+	<div>
+    	<pogo-issuu documentId="{{main.activeIssuuId}}"></pogo-issuu>
+	</div>
+<div class="jumbotron">
+	<section ng-init="main.selectPage=0">
+		<ul class="nav nav-tabs">
+		  <li><a href ng-click="main.selectPage=0" init><h2>O Wydaniu</h2></a></li>
+		  <li><a href ng-click="main.selectPage=1"><h2>Komentarze</h2></a></li>
+		</ul>
+	</section>
+
+	<div class="jumbotron" ng-if="main.selectPage === 0">
+		<pogo-description></pogo-description>
+	</div>
+
+<div ng-if="main.selectPage === 1">
+	<pogo-reviews></pogo-reviews>
+</div>
+
+</div>
+</div>

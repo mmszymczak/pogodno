@@ -1,8 +1,11 @@
 (function() {
   'use strict';
 
-angular.module("pogodno")
-.factory('Issuu', ['$http', function IssuuFactory($http){
+    angular
+    .module('pogodno')
+    .factory('IssuuFactory', IssuuFactory); 
+
+    function IssuuFactory($http){
 	var myData = null;
 	var resultArr = [];
 	var result4UrlArr = [];
@@ -49,12 +52,9 @@ angular.module("pogodno")
       },
       doStuff: function () {
           return myData;
-      },
-      const: function(){
-			return dataConst;
-		}
+      }
     };
 
-}]);
+}
 
 })();

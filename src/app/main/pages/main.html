@@ -1,45 +1,32 @@
 <div class="container">
-
-  <div>
-    <acme-navbar></acme-navbar>
-  </div>
-
-  <div class="container">
-
-    <div class="jumbotron" ng-show="main.showHeader">
-      <div class="jumbotroncenter">
-        <h1>Archiwum <img src="/assets/images/pogodno.png" id="pogodnojumbo" width="100">
-        </h1>
-      </div>
+    <div>
+        <pogo-navbar></pogo-navbar>
     </div>
-
-
-  <div>
-    <acme-jumbo ng-show="main.showJumbo"></acme-jumbo>
-  </div>
-
-  <div class="row">
-  <div class="col-md-12 text-center">
-    <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="app/components/pagination/dirPagination.tpl.html"></dir-pagination-controls>
-    <uib-pagination boundary-links="true" total-items="totalItems" ng-model="currentPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></uib-pagination>
-  </div>
-    
-
-
-    <div class="col-md-4" ng-repeat="awesomeThing in main.acmeDb._content | filter:query | orderBy : '-document.title' | limitTo: main.pageSize">
-
-      <a href="/#/pages/{{awesomeThing.document.id}}">
-      <div class="thumbnail" ng-class="{active: main.isActive(awesomeThing.document.id)}">
-        <div class="caption">
-          <img class="col-sm-12" ng-src="/assets/images/cover/{{awesomeThing.document.coverID}}.jpg">
-          <h3 class="col-md-4">{{ awesomeThing.document.title }}</h3>
-          <p class="col-md-12">Liczba stron: {{ awesomeThing.document.pageCount }}</p>
-          <p ng-show="awesomeThing.document.coverCuriosities" class="col-md-12">Okładka: {{ awesomeThing.document.coverCuriosities }}</p>
-          <p class="col-md-12 date">Data dodania: {{ awesomeThing.document.created | date }}</p>
+        <div class="jumbotron" ng-show="main.showHeader">
+            <div class="jumbotroncenter">
+                <h1>Archiwum <img src="/assets/images/logo/pogodno.png" id="pogodnojumbo" width="100"></h1>
+            </div>
         </div>
-      </div>
-    </a>
-    </div>
-  </div>
-    <acme-footer></acme-footer>
+        <div>
+            <pogo-document ng-show="main.showJumbo"></pogo-document>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <uib-pagination boundary-links="true" total-items="totalItems" ng-model="currentPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></uib-pagination>
+            </div>
+            <div class="col-md-4" ng-repeat="awesomeThing in main.acmeDb._content | filter:query | orderBy : '-document.title' | limitTo: main.pageSize">
+                <div class="thumbnail" ng-class="{active: main.isActive(awesomeThing.document.id)}">
+                    <a href="/#/pages/{{awesomeThing.document.id}}">
+                        <div class="caption">
+                            <img class="col-sm-12" ng-src="/assets/images/cover/{{awesomeThing.document.coverID}}.jpg">
+                            <h3 class="col-md-4">{{ awesomeThing.document.title }}</h3>
+                            <p class="col-md-12">Liczba stron: {{ awesomeThing.document.pageCount }}</p>
+                            <p ng-show="awesomeThing.document.coverCuriosities" class="col-md-12">Okładka: {{ awesomeThing.document.coverCuriosities }}</p>
+                            <p class="col-md-12 date">Data dodania: {{ awesomeThing.document.created | date }}</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    <pogo-footer></pogo-footer>
 </div>

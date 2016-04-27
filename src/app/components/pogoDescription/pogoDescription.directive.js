@@ -3,13 +3,13 @@
 
   angular
     .module('pogodno')
-    .directive('documentsList', documentsList);
+    .directive('pogoDescription', pogoDescription);
 
   /** @ngInject */
-  function documentsList() {
+  function pogoDescription() {
     var directive = {
       restrict: 'E',
-      templateUrl: 'app/components/list/list.html',
+      templateUrl: 'app/components/pogoDescription/pogoDescription.html'
     };
 
     return directive;

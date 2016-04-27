@@ -11,10 +11,9 @@
         templateUrl: '/app/main/pages/main.html',
         controller: 'MainController',
         controllerAs: 'main',
-        //resolve: MainController.resolve
         resolve: {
-        init: function(Issuu) {
-            return Issuu.promise;
+        init: function(IssuuFactory) {
+            return IssuuFactory.promise;
         }
         },
         resolveAs: 'dataIssuu'
@@ -24,8 +23,8 @@
         controller: 'MainController',
         controllerAs: 'main',
         resolve: {
-        init: function(Issuu) {
-            return Issuu.promise;
+        init: function(IssuuFactory) {
+            return IssuuFactory.promise;
         }
         },
         resolveAs: 'dataIssuu'
@@ -35,8 +34,8 @@
         controller: 'MainController',
         controllerAs: 'main',
         resolve: {
-        init: function(Issuu) {
-            return Issuu.promise;
+        init: function(IssuuFactory) {
+            return IssuuFactory.promise;
         }
         },
         resolveAs: 'dataIssuu'
@@ -46,8 +45,8 @@
         controller: 'MainController',
         controllerAs: 'main',
         resolve: {
-        init: function(Issuu) {
-            return Issuu.promise;
+        init: function(IssuuFactory) {
+            return IssuuFactory.promise;
         }
         },
         resolveAs: 'dataIssuu'
@@ -57,8 +56,8 @@
         controller: 'MainController',
         controllerAs: 'main',
         resolve: {
-        init: function(Issuu) {
-            return Issuu.promise;
+        init: function(IssuuFactory) {
+            return IssuuFactory.promise;
         }
         },
         resolveAs: 'dataIssuu'
