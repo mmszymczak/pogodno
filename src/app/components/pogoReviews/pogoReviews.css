@@ -1,0 +1,9 @@
+.glyphicon {
+    font-size: 35px;
+    color: #337AB7;
+}
+
+span.text-muted i.glyphicon {
+    font-size: 15px;
+    color: #337AB7;
+}

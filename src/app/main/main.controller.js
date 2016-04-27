@@ -30,13 +30,13 @@
 
     vm.go = go;
     vm.awesomeThingCurrent;
-    vm.showNextThings = showNextThings;
-    vm.currentPagePagination;
-    vm.changePagePagination = changePagePagination;
 
     vm.currentPage = internalDb.getPage();
-    vm.pageSize = 6;
+    
+    vm.pageSize = vm.data.rsp._content.result.pageSize;
     vm.pageChangeHandler = pageChangeHandler;
+    vm.changePagin = changePagin;
+    vm.itemsPerPage = 6;
 
     function pageChangeHandler(num) {
         internalDb.setPage(num);
@@ -585,7 +585,7 @@
 
     $scope.$on("$routeChangeSuccess", function () {
         vm.acmeDb._content.forEach(function(element,index){
-            if (element.document.id === $location.path().substring(7)) {
+            if (element.document.coverID === $location.path().substring(7)) {
                 vm.activeThing = vm.acmeDb._content[index].document;
                 vm.showJumbo = true;
                 vm.activeIssuuId = vm.acmeDb._content[index].document.id;
@@ -601,7 +601,7 @@
         } else {
             vm.showHeader = true;
         }
-
+        vm.currentPage = internalDb.getPage();
     });
 
     if (!vm.acmeDb) { vm.acmeDb = {};
@@ -668,7 +668,7 @@
     }
 
     function isActive(item) {
-        return vm.activeThing.id === item;
+        return vm.activeThing.coverID === item;
     }
 
     function go(path)  {
@@ -681,17 +681,11 @@
         vm.messages = $firebaseArray(reviewsRef);
         vm.messages.$add(vm.review);
         vm.review = {};
+        vm.review.grade = 3;
     }
 
-    function showNextThings() {
-        vm.allThingsLength = vm.acmeDb._content.length;
-        vm.totalItemsPagination = vm.allThingsLength * 6;
-        internalDb.setData(vm.currentPagePagination);
-    return (vm.currentPagePagination-1) * 6;
-    }
-
-    function changePagePagination(el) {
-        internalDb.setData(el);
+    function changePagin(){
+       internalDb.setPage(vm.currentPage);
     }
 
   }

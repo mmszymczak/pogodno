@@ -1,24 +1,26 @@
-<div class="row">
-	<div class="col-sm-4">
-		<h4>Tytuł:</h4>
-		<p>{{main.activeThing.title}}</p>
-	</div>
-	<div class="col-sm-4">
-		<h4>Data dodania:</h4>
-		<p>{{main.activeThing.created | date}}</p>
-	</div>
-	<div class="col-sm-4">
-		<h4>Liczba stron:</h4>
-		<p>{{main.activeThing.pageCount}}</p>
-	</div>
-	<div class="col-sm-12">
-		<h4>Okładka:</h4>
-		<p>{{main.activeThing.coverCuriosities}}</p>
-	</div>
-	<div class="col-md-12">
-		<h4>Artykuły</h4>
-		<ul>
-			<li ng-repeat="post in main.activeThing.posts" ><p>{{post}}</p></li>
-		</ul>
+<div class="jumbotron">
+	<div class="row">
+		<div class="col-sm-4">
+			<h4>Tytuł:</h4>
+			<p>{{main.activeThing.title}}</p>
+		</div>
+		<div class="col-sm-4">
+			<h4>Data dodania:</h4>
+			<p>{{main.activeThing.created | date}}</p>
+		</div>
+		<div class="col-sm-4">
+			<h4>Liczba stron:</h4>
+			<p>{{main.activeThing.pageCount}}</p>
+		</div>
+		<div class="col-sm-12">
+			<h4>Okładka:</h4>
+			<p>{{main.activeThing.coverCuriosities}}</p>
+		</div>
+		<div class="col-md-12">
+			<h4>Artykuły:</h4>
+			<ul>
+				<li ng-repeat="post in main.activeThing.posts" ><p>{{post}}</p></li>
+			</ul>
+		</div>
 	</div>
 </div>

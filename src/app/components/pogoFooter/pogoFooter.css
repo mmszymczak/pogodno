@@ -1,6 +1,7 @@
 div.content img {
 	width: auto;
-    height: 150px;
+    height: 100px;
+    margin-top: 20px;
 }
 
 div.footer h4 {
