@@ -6,7 +6,7 @@
     <div class="col-md-4" 
     ng-repeat="awesomeThing in main.acmeDb._content | filter:query | orderBy : '-document.title' | queryFilter:this:'main.filteredItems' | limitTo: main.itemsPerPage : (main.currentPage-1)*6 ">
         <a href="/#/pages/{{awesomeThing.document.coverID}}">
-            <div class="thumbnail" 
+            <div class="thumbnail hovering" 
             ng-class="{'active': main.isActive(awesomeThing.document.coverID)}">
                 <div class="caption">
                     <img class="col-sm-12" ng-src="/assets/images/cover/{{awesomeThing.document.coverID}}.jpg">
