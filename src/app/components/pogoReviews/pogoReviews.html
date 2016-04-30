@@ -1,47 +1,52 @@
 <div class="jumbotron">
-	<div class="row">
-		<form name="commentForm" ng-submit="commentForm.$valid && main.addReview(main.review)" novalidate>
-			<div class="form-group col-md-4" ng-class="{ 'has-error': commentForm.pseudonim.$invalid && commentForm.pseudonim.$dirty }">
-				<label>Wpisz swój pseudonim:</label>
-				<input type = "text" class="form-control" placeholder = "Pseudonim (wymagane)" name = "dname" ng-model="main.review.pseudonim" required>
-			</div>
+    <div class="row">
+        <form name="commentForm" ng-submit="commentForm.$valid && main.addReview(main.review)" novalidate>
+            <div class="form-group col-md-4">
+                <label>Wpisz swój pseudonim:</label>
+                <input type = "text" class="form-control" placeholder = "Pseudonim (wymagane)" name = "pseudonim" ng-model="main.review.pseudonim" required>
+                <h6 class="text-center" ng-show="commentForm.pseudonim.$invalid && !commentForm.pseudonim.$pristine" class="help-block">Popraw swój pseudonim!</h6>
+            </div>
 
-			<div class="form-group col-md-4" ng-class="{ 'has-error': commentForm.mail.$invalid && commentForm.mail.$dirty }">
-				<label>Wpisz adres e-mail:</label>
-				<input type = "email" class="form-control" placeholder = "E-Mail (wymagane)" name = "demail" ng-model="main.review.mail" required>
-			</div>
+            <div class="form-group col-md-4">
+                <label>Wpisz adres e-mail:</label>
+                <input type = "email" class="form-control" placeholder = "E-Mail (wymagane)" name = "email" ng-model="main.review.mail" required>
+                <h6 class="text-center" ng-show="commentForm.email.$invalid && !commentForm.email.$pristine" class="help-block">Popraw adres e-mail</h6>
+            </div>
 
-			<div class="form-group col-md-4" ng-init="main.review.grade = 3">
-			<label>Oceń ten numer:</label>
-				<div class="addreview"><uib-rating ng-model="main.review.grade" max="7" state-on="'glyphicon glyphicon-star'" state-off="'glyphicon glyphicon-star-empty'" aria-labelledby="custom-icons-4"></uib-rating></div>
-			</div>
+            <div class="form-group col-md-4">
+            <label>Oceń ten numer:</label>
+                <div class="addreview"><uib-rating ng-model="main.review.grade" max="5" state-on="'glyphicon glyphicon-star'" state-off="'glyphicon glyphicon-star-empty'" aria-labelledby="custom-icons-4"></uib-rating></div>
+                <h6 class="text-center" ng-show="!main.review.grade" class="help-block">Ocena jest wymagana</h6>
 
-			<div class="form-group col-md-12" ng-class="{ 'has-error': commentForm.context.$invalid && commentForm.context.$dirty }">
-				<textarea name = "comment" class="form-control col-md-4" rows="5" placeholder = "Tutaj wpisz tekst..."  ng-model="main.review.context" required></textarea>
-			</div>
+            </div>
 
-			<div class="form-group col-md-12">
-				<input type="submit" class="btn btn-primary col-md-12" value="Dodaj komentarz">
-			</div>
-		</form>
-	</div>
+            <div class="form-group col-md-12">
+                <textarea name = "context" class="form-control col-md-4" rows="3" placeholder = "Tutaj wpisz tekst... (opcjonalnie)"  ng-model="main.review.context"></textarea>
+            </div>
 
-	<div class="row">
-		<div ng-repeat="review in main.messages">
-		<div class="col-lg-12">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<strong>Pseudonim: {{review.pseudonim}} || e-mail: 
-					<a ng-href="mailto:{{review.mail}}" target="_blank">{{review.mail}}</a> ||</strong> 
-					<span class="text-muted" >Stars: 
-					<uib-rating ng-model="review.grade" max="7" readonly-input="true" state-on="'glyphicon glyphicon-star'" state-off="'glyphicon glyphicon-star-empty'" aria-labelledby="custom-icons-4" data-readonly="true"></uib-rating>
-					</span>
-				</div>
-				<div class="panel-body">
-				{{review.context}}
-				</div>
-			</div>
-		</div>
-		</div>
-	</div>
+            <div class="form-group col-md-12">
+                <input type="submit" class="btn btn-primary col-md-12" value="Dodaj komentarz" ng-disabled="!(main.review.grade && !commentForm.$invalid)" ng-click="main.resetForm(commentForm)">
+            </div>
+        </form>
+    </div>
+
+    <div class="row">
+        <div ng-repeat="review in main.messages | orderBy: '-date'">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <strong>
+                    {{review.pseudonim}} || <a ng-href="mailto:{{review.mail}}" target="_blank">{{review.mail}}</a>
+                    </strong>
+                    <span class="text-muted">
+                    <uib-rating ng-model="review.grade" max="7" readonly-input="true" state-on="'glyphicon glyphicon-star'" state-off="'glyphicon glyphicon-star-empty'" aria-labelledby="custom-icons-4" data-readonly="true"></uib-rating>
+                    </span>
+                </div>
+                <div class="panel-body" ng-show="review.context">
+                {{review.context}}
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
 </div>

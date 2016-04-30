@@ -1,15 +1,15 @@
-  <div class="row">
-    <div class="col-md-4" ng-repeat="awesomeThing in main.acmeDb._content | orderBy : '-document.title' | limitTo : 3 ">
-      <a href="/#/pages/{{awesomeThing.document.id}}">
-      <div class="thumbnail">
-        <div class="caption">
-          <img class="col-sm-12" ng-src="/assets/images/cover/{{awesomeThing.document.coverID}}.jpg">
-          <h3 class="col-md-4">{{ awesomeThing.document.title }}</h3>
-          <p class="col-md-12">Liczba stron: {{ awesomeThing.document.pageCount }}</p>
-          <p ng-show="awesomeThing.document.coverCuriosities" class="col-md-12">Okładka: {{ awesomeThing.document.coverCuriosities }}</p>
-          <p class="col-md-12 date">Data dodania: {{ awesomeThing.document.created | date }}</p>
+    <div class="row">
+        <div class="col-md-4" ng-repeat="awesomeThing in main.acmeDb._content | orderBy : '-document.title' | limitTo : 3 ">
+            <a href="/#/pages/{{awesomeThing.document.id}}">
+            <div class="thumbnail">
+                <div class="caption">
+                    <img class="col-sm-12" ng-src="/assets/images/cover/{{awesomeThing.document.coverID}}.jpg">
+                    <h3 class="col-md-4">{{ awesomeThing.document.title }}</h3>
+                    <p class="col-md-12">Liczba stron: {{ awesomeThing.document.pageCount }}</p>
+                    <p ng-show="awesomeThing.document.coverCuriosities" class="col-md-12">Okładka: {{ awesomeThing.document.coverCuriosities }}</p>
+                    <p class="col-md-12 date">Data dodania: {{ awesomeThing.document.created | date }}</p>
+                </div>
+            </div>
+        </a>
         </div>
-      </div>
-    </a>
     </div>
-  </div>

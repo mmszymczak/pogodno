@@ -7,12 +7,12 @@
 
   /** @ngInject */
   function MainController($route, $q, toastr, internalDb, IssuuFactory, $location, $anchorScroll, $scope, $compile, $routeParams, firebaseUrl, $firebaseArray, Firebase) {
-    
+
     var vm = this;
     vm.data = IssuuFactory.doStuff();
     internalDb.setTotalNumPage(vm.data.rsp._content.result.totalCount);
 
-    
+
     var ref = new Firebase(firebaseUrl);
 
     vm.totalNumPages = internalDb.getTotalNumPage();
@@ -25,6 +25,17 @@
     vm.hideJumbo = hideJumbo;
     vm.showJumbo = false;
     vm.isActive = isActive;
+    vm.resetForm = resetForm;
+    vm.limitToValue = 3;
+
+    function resetForm(form) {
+      console.log(form);
+      form.$setPristine();
+      form.$setUntouched();
+      form.$setSubmitted();
+
+    }
+
 
     vm.allDoc = vm.data.rsp._content.result._content;
 
@@ -32,7 +43,7 @@
     vm.awesomeThingCurrent;
 
     vm.currentPage = internalDb.getPage();
-    
+
     vm.pageSize = vm.data.rsp._content.result.pageSize;
     vm.pageChangeHandler = pageChangeHandler;
     vm.changePagin = changePagin;
@@ -677,11 +688,12 @@
     }
 
     function addReview() {
+      vm.review.date = Date.now();
+        console.log(vm.review);
         var reviewsRef = ref.child('_content/'+ vm.currentDocumentIndex + '/document/reviews');
         vm.messages = $firebaseArray(reviewsRef);
         vm.messages.$add(vm.review);
         vm.review = {};
-        vm.review.grade = 3;
     }
 
     function changePagin(){

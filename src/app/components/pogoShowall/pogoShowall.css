@@ -1,3 +1,24 @@
 .hovering:hover {
     border: 3px solid darkgreen;
 }
+
+div.caption img {
+  height: 450%;
+  width: auto;
+  position: absolute;
+  right: 0;
+  bottom: 100;
+}
+
+div.caption {
+  position: relative;
+  height: 24px;
+}
+
+p.date {
+  height: 450%;
+  width: auto;
+  position: absolute;
+  left: 100px;
+  top: 220px;
+}
