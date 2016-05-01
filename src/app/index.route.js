@@ -14,7 +14,8 @@
                 resolve: {
                 init: function(IssuuFactory) {
                         return IssuuFactory.promise;
-                }
+                      }
+
                 },
                 resolveAs: 'dataIssuu'
             })

@@ -7,6 +7,7 @@ span.text-muted i.glyphicon {
     font-size: 15px;
     color: #337AB7;
     float:right;
+    cursor: default;
 }
 
 div.addreview {
@@ -17,3 +18,14 @@ input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px white inset;
 }
 
+img {
+  margin-right: 20px;
+}
+
+p.pseudonim {
+  display: inline;
+}
+
+p.email {
+  display: inline;
+}
