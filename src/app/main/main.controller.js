@@ -43,6 +43,7 @@
     vm.changePagin = changePagin;
     vm.itemsPerPage = 6;
     vm.gravatarUrl = gravatarUrl;
+    vm.showLoginAdmin = true;
 
     function gravatarUrl(email) {
       return GravatarFactory(email);
@@ -59,9 +60,11 @@
         }, function(error) {    // authData param
           if (error) {
             toastr.error('Oj... Coś poszło nie tak.');
+            vm.showLoginAdmin = true;
           } else {
             toastr.success('Pomyślna próba zalogowania!');
-            $location.path('/');
+            vm.adminAuth = true;
+            vm.showLoginAdmin = false;
           }
         });
     }

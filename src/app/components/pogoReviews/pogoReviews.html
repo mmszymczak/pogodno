@@ -42,6 +42,7 @@
                     </strong>
                     <span class="text-muted">
                     <uib-rating ng-model="review.grade" max="5" readonly-input="true" state-on="'glyphicon glyphicon-star'" state-off="'glyphicon glyphicon-star-empty'" aria-labelledby="custom-icons-4" data-readonly="true"></uib-rating>
+                    <button ng-if="main.showLoginAdmin">X</button>
                     </span>
                 </div>
                 <div class="panel-body" ng-show="review.context">

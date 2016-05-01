@@ -4,8 +4,20 @@
     </div>
     <div class="container">
         <div class="jumbotron">
-            <h2 class="text-center">Logowanie Administratora</h2>
-            <form name="form" ng-submit="main.login() && form.$invalid" role="form">
+            <h2 class="text-center">Administrator</h2>
+              <div ng-if="!main.showLoginAdmin">
+                  <p>Witaj administratorze!</p>
+                  <form action="http://upload.issuu.com/1_0" enctype="multipart/form-data" method="post">
+                    <input type="hidden" name="action" value="issuu.document.upload"/>
+                    <input type="hidden" name="apiKey" value="mggx93e5clvkn6om0czhxhu91n2sl416"/>
+                    <input type="text" name="name" value="racing"/>
+                    <input type="text" name="title" value="Race Cars"/>
+                    <input type="hidden" name="signature" value="810b910ed5c8a53d704fd062a6001b22"/>
+                    <input type="file" name="file"/>
+                    <input type="submit" name="_upload" value="Upload"/>
+                  </form>
+              </div>
+            <form name="form" ng-submit="main.login() && form.$invalid" role="form" ng-if="main.showLoginAdmin">
                 <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
                     <label for="username">Nazwa Użytkownika</label>
                     <input type="text" name="username" id="username" class="form-control" ng-model="main.username" required />
