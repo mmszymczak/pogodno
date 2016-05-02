@@ -15,10 +15,11 @@
                     init: ["IssuuFactory","$q", function (IssuuFactory, $q) {
                         return $q.all({
                             issuu: IssuuFactory.promiseIssuu,
-                            allData: IssuuFactory.getImportantData
+                            allData: IssuuFactory.promiseData
                         });
                     }]
                 },
+                resolveAs: 'initData'
             })
             .when('/team', {
                 templateUrl: '/app/main/pages/team.html',
@@ -28,7 +29,7 @@
                     init: ["IssuuFactory","$q", function (IssuuFactory, $q) {
                         return $q.all({
                             issuu: IssuuFactory.promiseIssuu,
-                            allData: IssuuFactory.getImportantData
+                            allData: IssuuFactory.promiseData
                         });
                     }]
                 },
@@ -49,9 +50,12 @@
                 controller: 'MainController',
                 controllerAs: 'main',
                 resolve: {
-                    init: function(IssuuFactory) {
-                            return IssuuFactory.promiseIssuu;
-                    }
+                    init: ["IssuuFactory","$q", function (IssuuFactory, $q) {
+                        return $q.all({
+                            issuu: IssuuFactory.promiseIssuu,
+                            allData: IssuuFactory.promiseData
+                        });
+                    }]
                 },
                 resolveAs: 'dataIssuu'
             })

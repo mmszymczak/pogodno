@@ -9,7 +9,7 @@
   function MainController($route, $q, toastr, internalDb, IssuuFactory, $location, $anchorScroll, $scope, $compile, $routeParams, firebaseUrl, $firebaseArray, $firebaseObject, Firebase, GravatarFactory) {
 
     var vm = this;
-    internalDb.setTotalNumPage(IssuuFactory.doStuff().rsp._content.result.totalCount);
+    internalDb.setTotalNumPage(IssuuFactory.doIssuuStuff().rsp._content.result.totalCount);
 
     var ref = new Firebase(firebaseUrl);
 
@@ -20,10 +20,12 @@
     vm.hideJumbo = hideJumbo;
     vm.showJumbo = false;
     vm.isActive = isActive;
+    vm.acmeDb = internalDb.getImportantData();
+    console.log(IssuuFactory.doFirebaseStuff());
 
     console.log($scope);
-    vm.acmeDb = IssuuFactory.getImportantData(); 
-    console.log(IssuuFactory.getImportantData());
+    // vm.acmeDb = IssuuFactory.promiseData();
+    console.log(vm.acmeDb);
 
     vm.acmeDb.forEach(function(element,index){
         if (element.document.coverID === $location.path().substring(7)) {
@@ -60,7 +62,7 @@
 
     vm.currentPage = internalDb.getPage();
 
-    vm.pageSize = IssuuFactory.doStuff().rsp._content.result.pageSize;
+    vm.pageSize = IssuuFactory.doIssuuStuff().rsp._content.result.pageSize;
     vm.pageChangeHandler = pageChangeHandler;
     vm.changePagin = changePagin;
     vm.itemsPerPage = 6;
@@ -93,7 +95,7 @@
 
     //         internalDb.setActiveThing(vm.acmeDb[index].document);
     //         vm.activeThing = internalDb.getActiveThing();
-            
+
     //         console.log(internalDb.getActiveThing());
 
 

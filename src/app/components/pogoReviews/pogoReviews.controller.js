@@ -7,13 +7,13 @@
 
   /** @ngInject */
     function ReviewController($route, $q, toastr, internalDb, IssuuFactory, $location, $anchorScroll, $scope, $compile, $routeParams, firebaseUrl, $firebaseArray, $firebaseObject, Firebase, GravatarFactory) {
-        
+
         var ref = new Firebase(firebaseUrl);
         var vm = this;
         vm.addReview = addReview;
         vm.resetForm = resetForm;
         vm.gravatarUrl = gravatarUrl;
-        vm.allDoc = IssuuFactory.doStuff().rsp._content.result._content;
+        vm.allDoc = IssuuFactory.doIssuuStuff().rsp._content.result._content;
         vm.acmeDb = internalDb.getImportantData(vm.allDoc);
         vm.messages = internalDb.getMessages();
 
@@ -35,5 +35,5 @@
         }
 
     }
-    
+
 })();

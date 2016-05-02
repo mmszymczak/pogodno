@@ -7,11 +7,11 @@
 
   /** @ngInject */
     function DescriptionController($route, $q, toastr, internalDb, IssuuFactory, $location, $anchorScroll, $scope, $compile, $routeParams, firebaseUrl, $firebaseArray, $firebaseObject, Firebase, GravatarFactory) {
-        
+
         var ref = new Firebase(firebaseUrl);
         var vm = this;
         vm.limitToValue = 3;
-        vm.allDoc = IssuuFactory.doStuff().rsp._content.result._content;
+        vm.allDoc = IssuuFactory.doIssuuStuff().rsp._content.result._content;
         // vm.acmeDb = internalDb.getImportantData(vm.allDoc);
 
         vm.activeThing = internalDb.getActiveThing();
@@ -34,5 +34,5 @@
         }
 
     }
-    
+
 })();
