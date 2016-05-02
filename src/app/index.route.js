@@ -12,32 +12,35 @@
                 controller: 'MainController',
                 controllerAs: 'main',
                 resolve: {
-                init: function(IssuuFactory) {
-                        return IssuuFactory.promise;
-                      }
-
+                    init: ["IssuuFactory","$q", function (IssuuFactory, $q) {
+                        return $q.all({
+                            issuu: IssuuFactory.promiseIssuu,
+                            allData: IssuuFactory.getImportantData
+                        });
+                    }]
                 },
-                resolveAs: 'dataIssuu'
             })
             .when('/team', {
                 templateUrl: '/app/main/pages/team.html',
                 controller: 'MainController',
                 controllerAs: 'main',
                 resolve: {
-                init: function(IssuuFactory) {
-                        return IssuuFactory.promise;
-                }
+                    init: ["IssuuFactory","$q", function (IssuuFactory, $q) {
+                        return $q.all({
+                            issuu: IssuuFactory.promiseIssuu,
+                            allData: IssuuFactory.getImportantData
+                        });
+                    }]
                 },
-                resolveAs: 'dataIssuu'
             })
             .when('/about', {
                 templateUrl: '/app/main/pages/about.html',
                 controller: 'MainController',
                 controllerAs: 'main',
                 resolve: {
-                init: function(IssuuFactory) {
-                        return IssuuFactory.promise;
-                }
+                    init: function(IssuuFactory) {
+                            return IssuuFactory.promiseIssuu;
+                    }
                 },
                 resolveAs: 'dataIssuu'
             })
@@ -46,9 +49,9 @@
                 controller: 'MainController',
                 controllerAs: 'main',
                 resolve: {
-                init: function(IssuuFactory) {
-                        return IssuuFactory.promise;
-                }
+                    init: function(IssuuFactory) {
+                            return IssuuFactory.promiseIssuu;
+                    }
                 },
                 resolveAs: 'dataIssuu'
             })
@@ -57,9 +60,9 @@
                 controller: 'MainController',
                 controllerAs: 'main',
                 resolve: {
-                init: function(IssuuFactory) {
-                        return IssuuFactory.promise;
-                }
+                    init: function(IssuuFactory) {
+                            return IssuuFactory.promiseIssuu;
+                    }
                 },
                 resolveAs: 'dataIssuu'
             })

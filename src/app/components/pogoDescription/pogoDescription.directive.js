@@ -9,7 +9,9 @@
     function pogoDescription() {
         var directive = {
             restrict: 'E',
-            templateUrl: 'app/components/pogoDescription/pogoDescription.html'
+            templateUrl: 'app/components/pogoDescription/pogoDescription.html',
+            controller: 'DescriptionController',
+            controllerAs: 'DescriptionCtrl'
         };
 
         return directive;

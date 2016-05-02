@@ -11,27 +11,49 @@
     var vm = this;
     internalDb.setTotalNumPage(IssuuFactory.doStuff().rsp._content.result.totalCount);
 
-
     var ref = new Firebase(firebaseUrl);
 
     vm.totalNumPages = internalDb.getTotalNumPage();
-
     vm.hashValue = $routeParams.filter;
     vm.showHeader = true;
     vm.login = login;
-    vm.activeThing = '';
-    vm.addReview = addReview;
     vm.hideJumbo = hideJumbo;
     vm.showJumbo = false;
     vm.isActive = isActive;
-    vm.resetForm = resetForm;
-    vm.limitToValue = 3;
-    vm.allDoc = IssuuFactory.doStuff().rsp._content.result._content;
-    vm.acmeDb = internalDb.getImportantData(vm.allDoc);
 
-    function resetForm(form) {
-      form.$setPristine();
-    }
+    console.log($scope);
+    vm.acmeDb = IssuuFactory.getImportantData(); 
+    console.log(IssuuFactory.getImportantData());
+
+    vm.acmeDb.forEach(function(element,index){
+        if (element.document.coverID === $location.path().substring(7)) {
+            console.log("jestem w srodku",vm.acmeDb);
+            internalDb.setActiveThing(vm.acmeDb[index].document);
+            vm.activeThing = internalDb.getActiveThing();
+
+            vm.showJumbo = true;
+
+            internalDb.setActiveIssuuId(vm.acmeDb[index].document.id);
+            vm.activeIssuuId = internalDb.getActiveIssuuId();
+
+            $anchorScroll(vm.acmeDb[index].document);
+
+            internalDb.setCurrentDocumentIndex(index);
+            vm.currentDocumentIndex = internalDb.getCurrentDocumentIndex();
+
+            var reviewsRef = ref.child('_content/'+ internalDb.getCurrentDocumentIndex() + '/document/reviews');
+            internalDb.setMessages($firebaseArray(reviewsRef));
+            vm.messages = internalDb.getMessages();
+        }
+
+        if($location.path().substring(1)) {
+            vm.showHeader = false;
+        } else {
+            vm.showHeader = true;
+        }
+        vm.currentPage = internalDb.getPage();
+    });
+
 
     vm.go = go;
     vm.awesomeThingCurrent;
@@ -42,12 +64,7 @@
     vm.pageChangeHandler = pageChangeHandler;
     vm.changePagin = changePagin;
     vm.itemsPerPage = 6;
-    vm.gravatarUrl = gravatarUrl;
     vm.showLoginAdmin = true;
-
-    function gravatarUrl(email) {
-      return GravatarFactory(email);
-    }
 
     function pageChangeHandler(num) {
         internalDb.setPage(num);
@@ -68,45 +85,40 @@
           }
         });
     }
+    // console.log(4234234,vm.acmeDb);
+    // vm.acmeDb.forEach(function(element,index){
+    //     console.log(123,vm.acmeDb);
+    //     console.log(321,vm.acmeDb[index]);
+    //     if (element.document.coverID === $location.path().substring(7)) {
 
-    $scope.$on("$routeChangeSuccess", function () {
-        vm.acmeDb.forEach(function(element,index){
-            if (element.document.coverID === $location.path().substring(7)) {
-                vm.activeThing = vm.acmeDb[index].document;
-                vm.showJumbo = true;
-                vm.activeIssuuId = vm.acmeDb[index].document.id;
-                $anchorScroll(vm.acmeDb[index].document);
-                vm.currentDocumentIndex = index;
-                var reviewsRef = ref.child('_content/'+ vm.currentDocumentIndex + '/document/reviews');
-                vm.messages = $firebaseArray(reviewsRef);
-            }
-        });
+    //         internalDb.setActiveThing(vm.acmeDb[index].document);
+    //         vm.activeThing = internalDb.getActiveThing();
+            
+    //         console.log(internalDb.getActiveThing());
 
-        if($location.path().substring(1)) {
-            vm.showHeader = false;
-        } else {
-            vm.showHeader = true;
-        }
-        vm.currentPage = internalDb.getPage();
-    });
 
-/////////////// Navbar ////////////////////////////////////////
-    vm.navLinks = [{
-        Title: '',
-        LinkText: 'Strona Główna'
-    }, {
-        Title: 'team',
-        LinkText: 'O Redakcji'
-    }, {
-        Title: 'about',
-        LinkText: 'O Gazecie'
-    }];
+    //         vm.showJumbo = true;
 
-    vm.navClass = function (page) {
-        var currentRoute = $location.path().substring(1) || '';
-        return page === currentRoute ? 'active' : '';
-    };
-/////////////// Navbar ////////////////////////////////////////
+    //         internalDb.setActiveIssuuId(vm.acmeDb[index].document.id);
+    //         vm.activeIssuuId = internalDb.getActiveIssuuId();
+
+    //         $anchorScroll(vm.acmeDb[index].document);
+
+    //         internalDb.setCurrentDocumentIndex(index);
+    //         vm.currentDocumentIndex = internalDb.getCurrentDocumentIndex();
+
+    //         var reviewsRef = ref.child('_content/'+ internalDb.getCurrentDocumentIndex() + '/document/reviews');
+    //         internalDb.setMessages($firebaseArray(reviewsRef));
+    //         vm.messages = internalDb.getMessages();
+    //     }
+
+    //     if($location.path().substring(1)) {
+    //         vm.showHeader = false;
+    //     } else {
+    //         vm.showHeader = true;
+    //     }
+    //     vm.currentPage = internalDb.getPage();
+    // });
 
     // function resetDatabase() {
     //     var json = JSON.stringify(vm.acmeDb._content, function( key, value ) {
@@ -126,25 +138,17 @@
     }
 
     function isActive(item) {
-        return vm.activeThing.coverID === item;
+        return internalDb.getActiveThing() === item;
     }
 
     function go()  {
         $anchorScroll();
     }
 
-    function addReview() {
-      vm.review.date = Date.now();
-        console.log(vm.review);
-        var reviewsRef = ref.child('_content/'+ vm.currentDocumentIndex + '/document/reviews');
-        vm.messages = $firebaseArray(reviewsRef);
-        vm.messages.$add(vm.review);
-        vm.review = {};
-    }
-
     function changePagin(){
        internalDb.setPage(vm.currentPage);
     }
+
 
   }
 })();

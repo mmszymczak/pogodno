@@ -7,9 +7,12 @@
 
     /** @ngInject */
     function pogoNavbar() {
+
         var directive = {
             restrict: 'E',
-            templateUrl: 'app/components/pogoNavbar/pogoNavbar.html'
+            templateUrl: 'app/components/pogoNavbar/pogoNavbar.html',
+            controller: 'NavbarController',
+            controllerAs: 'NavbarCtrl'
         };
 
         return directive;
