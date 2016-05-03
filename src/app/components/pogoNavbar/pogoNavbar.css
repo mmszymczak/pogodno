@@ -1,5 +1,5 @@
 .navbar {
-	background: #003300;
+	background: #001900;
 }
 
 .navbar-search {
@@ -8,4 +8,5 @@
 
 #searchBox {
 	width: 400px;
+  height: 35px;
 }

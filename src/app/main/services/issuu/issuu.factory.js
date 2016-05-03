@@ -66,7 +66,7 @@
 
     return {
 		promiseIssuu:promiseIssuu,
-		promiseData: promiseData(),
+		promiseData:promiseData(),
 		doIssuuStuff: function () {
 		  	return vm.myData;
 		},

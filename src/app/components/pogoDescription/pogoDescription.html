@@ -21,7 +21,7 @@
             <ul>
                 <li ng-repeat="post in DescriptionCtrl.activeThing.posts | limitTo : DescriptionCtrl.limitToValue" ><p>{{post}}</p></li>
             </ul>
-            <button class="btn col-md-12" ng-click="DescriptionCtrl.limitToValue=undefined" ng-if="DescriptionCtrl.limitToValue">Pokaż wszystkie artykuły</button>
+            <button class="btn btn-success col-md-12 buttonToHide" ng-click="DescriptionCtrl.limitToValue=undefined" ng-if="DescriptionCtrl.limitToValue">Pokaż wszystkie artykuły</button>
         </div>
     </div>
 </div>
