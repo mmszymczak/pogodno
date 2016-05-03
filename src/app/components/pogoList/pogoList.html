@@ -1,8 +1,8 @@
     <div class="row">
-        <div class="col-md-4" ng-repeat="awesomeThing in mainCtrl.acmeDb | orderBy : '-document.title' | limitTo : 3 ">
+        <div class="col-md-4" ng-repeat="awesomeThing in ListCtrl.acmeDb | orderBy : '-document.title' | limitTo : 3 ">
             <a href="/#/pages/{{awesomeThing.document.coverID}}">
             <div class="thumbnail hovering">
-                <div class="caption" ng-click="mainCtrl.go()">
+                <div class="caption" ng-click="ListCtrl.go()">
                     <img class="col-sm-12" ng-src="/assets/images/cover/{{awesomeThing.document.coverID}}.jpg">
                     <h3 class="col-md-4">{{ awesomeThing.document.title }}</h3>
                     <p class="col-md-12 pageCount">Liczba stron: {{ awesomeThing.document.pageCount }}</p>

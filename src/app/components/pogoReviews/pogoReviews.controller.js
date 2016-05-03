@@ -6,9 +6,8 @@
     .controller('ReviewController', ReviewController);
 
   /** @ngInject */
-    function ReviewController($route, $q, toastr, internalDb, IssuuFactory, $location, $anchorScroll, $scope, $compile, $routeParams, firebaseUrl, $firebaseArray, $firebaseObject, Firebase, GravatarFactory) {
+    function ReviewController(Firebase, firebaseUrl, GravatarFactory, IssuuFactory, internalDb) {
 
-        var ref = new Firebase(firebaseUrl);
         var vm = this;
         vm.addReview = addReview;
         vm.resetForm = resetForm;
@@ -23,8 +22,6 @@
 
         function addReview() {
             vm.messages = internalDb.getMessages();
-            // var reviewsRef = ref.child('_content/'+ vm.currentDocumentIndex + '/document/reviews');
-            // vm.messages = $firebaseArray(reviewsRef);
             vm.review.date = Date.now();
             vm.messages.$add(vm.review);
             vm.review = {};

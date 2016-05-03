@@ -6,7 +6,7 @@
     .controller('NavbarController', NavbarController);
 
   /** @ngInject */
-    function NavbarController($route, $q, toastr, internalDb, IssuuFactory, $location, $anchorScroll, $scope, $compile, $routeParams, firebaseUrl, $firebaseArray, $firebaseObject, Firebase, GravatarFactory) {
+    function NavbarController($location) {
 
         var vm = this;
         vm.hideJumbo = hideJumbo;
@@ -32,5 +32,5 @@
           return vm.showJumbo = false;
         }
     }
-    
+
 })();

@@ -6,17 +6,18 @@
 			.service('internalDb', internalDb);
 
 	/** @ngInject */
-	function internalDb(firebaseUrl, $firebaseObject, $q, IssuuFactory) {
-		var vm = this;
-		var ref = new Firebase(firebaseUrl);
+	function internalDb(IssuuFactory) {
+
+    var vm = this;
+
+    vm.setData = setData;
+    vm.getData = getData;
 
 		vm.setPage = setPage;
 		vm.getPage = getPage;
 
-		vm.getTotalNumPage = getTotalNumPage;
 		vm.setTotalNumPage = setTotalNumPage;
-
-		vm.getImportantData = getImportantData;
+		vm.getTotalNumPage = getTotalNumPage;
 
 		vm.setAdminAuth = setAdminAuth;
 		vm.getAdminAuth = getAdminAuth;
@@ -27,122 +28,90 @@
 		vm.setActiveIssuuId = setActiveIssuuId;
 		vm.getActiveIssuuId = getActiveIssuuId;
 
-		vm.setActiveIssuuId = setActiveIssuuId;
-		vm.getActiveIssuuId = getActiveIssuuId;
-
 		vm.setCurrentDocumentIndex = setCurrentDocumentIndex;
 		vm.getCurrentDocumentIndex = getCurrentDocumentIndex;
 
 		vm.setMessages = setMessages;
 		vm.getMessages = getMessages;
 
-		vm.setData = setData;
-		vm.getData = getData;
+    vm.getImportantData = getImportantData;
 
 
+    vm.data = [];
 		vm.currentPage = 1;
 		vm.totalNumPage;
-		vm.issuuData = {}
+    vm.adminAuth = true;
+    vm.activeThing = '';
+    vm.activeIssuuId;
+    vm.currentDocumentIndex;
+    vm.messages;
 		vm.obj = [];
-		vm.adminAuth = true;
-		vm.activeThing = '';
-		vm.activeIssuuId;
-		vm.currentDocumentIndex;
-		vm.messages;
-		vm.data = [];
 
 
-		function getData() {
-			return vm.data;
-		}
 		function setData(element) {
 			vm.data = element;
 		}
+    function getData() {
+      return vm.data;
+    }
 
 
-		function getPage() {
-			return vm.currentPage;
-		}
 		function setPage(element) {
 			vm.currentPage = element
 		}
+    function getPage() {
+      return vm.currentPage;
+    }
 
 
-		function getActiveThing() {
-			return vm.activeThing;
-		}
+    function setTotalNumPage(element) {
+      vm.totalNumPage = element
+    }
+    function getTotalNumPage() {
+      return vm.totalNumPage;
+    }
+
+
+    function setAdminAuth(element) {
+        vm.adminAuth = element ? true : false;
+    }
+    function getAdminAuth() {
+      return vm.adminAuth;
+    }
+
+
 		function setActiveThing(element) {
 			vm.activeThing = element
 		}
+    function getActiveThing() {
+      return vm.activeThing;
+    }
 
 
-		function getActiveIssuuId() {
-			return vm.activeIssuuId;
-		}
 		function setActiveIssuuId(element) {
 			vm.activeIssuuId = element
 		}
+    function getActiveIssuuId() {
+      return vm.activeIssuuId;
+    }
 
 
-		function getCurrentDocumentIndex() {
+		function setCurrentDocumentIndex(element) {
+      vm.currentDocumentIndex = element
+    }
+    function getCurrentDocumentIndex() {
 			return vm.currentDocumentIndex;
 		}
-		function setCurrentDocumentIndex(element) {
-			vm.currentDocumentIndex = element
-		}
 
 
-		function getAdminAuth() {
-			return vm.adminAuth;
-		}
-		function setAdminAuth(element) {
-				vm.adminAuth = element ? true : false;
-		}
-
-
-
-		function getTotalNumPage() {
-			return vm.totalNumPage;
-		}
-		function setTotalNumPage(element) {
-			vm.totalNumPage = element
-		}
-
-
+    function setMessages(element) {
+      vm.messages = element
+    }
 		function getMessages() {
 			return vm.messages;
 		}
-		function setMessages(element) {
-			vm.messages = element
-		}
 
-		// function getImportantData() {
-		// // 	vm.allDoc = IssuuFactory.doStuff().rsp._content.result._content;
-		// // 	$firebaseObject(ref.child('_content')).$loaded(
-		// // 		function(data) {
-		// // 			vm.firebaseObj = data;
-		// // 		}, function(error) {
-		// // 			console.error("Error:", error);
-		// // 		}).then(loadData);
 
-		// // 	function loadData() {
-		// // 		vm.allDoc.forEach(function(element,index){
-		// // 			vm.obj[index] = {};
-		// // 			vm.obj[index].document = {};
-		// // 			vm.obj[index].document.coverID = ((index+1) < 10) ? '0' + (index+1).toString() : (index+1).toString();
-		// // 			vm.obj[index].document.title = element.document.title;
-		// // 			vm.obj[index].document.pageCount = element.document.pageCount;
-		// // 			vm.obj[index].document.created = element.document.created;
-		// // 			vm.obj[index].document.id = element.document.documentId;
-		// // 			vm.obj[index].document.coverCuriosities = vm.firebaseObj[index].document.coverCuriosities;
-		// // 			vm.obj[index].document.posts = vm.firebaseObj[index].document.posts;
-		// // 			if (!vm.obj[index].document.reviews) {
-		// // 			vm.obj[index].document.reviews = [];
-		// // 			}
-		// // 		});
-		// // 	}
-		// // return vm.obj
-		// }
 
     function getImportantData() {
       vm.allDoc = IssuuFactory.doIssuuStuff().rsp._content.result._content;
@@ -161,40 +130,39 @@
           vm.obj[index].document.reviews = [];
           }
         });
-    console.log(vm.obj);
     return vm.obj
     }
 
 
 		return {
 
+			setData : setData,
+      getData : getData,
+
+      setPage : setPage,
 			getPage : getPage,
-			setPage : setPage,
 
-			getAdminAuth : getAdminAuth,
+      setTotalNumPage : setTotalNumPage,
+      getTotalNumPage : getTotalNumPage,
+
 			setAdminAuth : setAdminAuth,
+			getAdminAuth : getAdminAuth,
 
-			getActiveThing : getActiveThing,
 			setActiveThing : setActiveThing,
+			getActiveThing : getActiveThing,
 
-			getActiveIssuuId : getActiveIssuuId,
 			setActiveIssuuId : setActiveIssuuId,
+			getActiveIssuuId : getActiveIssuuId,
 
-			getCurrentDocumentIndex : getCurrentDocumentIndex,
 			setCurrentDocumentIndex : setCurrentDocumentIndex,
+			getCurrentDocumentIndex : getCurrentDocumentIndex,
 
-			getMessages : getMessages,
 			setMessages : setMessages,
-
-			getTotalNumPage : getTotalNumPage,
-			setTotalNumPage : setTotalNumPage,
+			getMessages : getMessages,
 
 			getImportantData : vm.getImportantData,
 
-			getData : getData,
-			setData : setData,
+		};
 
-		}
 	}
-
 })();

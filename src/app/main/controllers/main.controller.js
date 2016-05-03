@@ -9,19 +9,13 @@
   function MainController($route, $q, toastr, internalDb, IssuuFactory, $location, $anchorScroll, $scope, $compile, $routeParams, firebaseUrl, $firebaseArray, $firebaseObject, Firebase, GravatarFactory) {
 
     var vm = this;
-    console.log(IssuuFactory.doIssuuStuff());
-    internalDb.setTotalNumPage(IssuuFactory.doIssuuStuff().rsp._content.result.totalCount);
 
-    var ref = new Firebase(firebaseUrl);
-
-    vm.totalNumPages = internalDb.getTotalNumPage();
+    vm.ref = new Firebase(firebaseUrl);
     vm.showAbout = false;
-    vm.showAboutChange = showAboutChange;
-    vm.hashValue = $routeParams.filter;
     vm.showHeader = true;
-    vm.hideJumbo = hideJumbo;
     vm.showJumbo = false;
-    vm.isActive = isActive;
+
+    vm.showAboutChange = showAboutChange;
     vm.acmeDb = internalDb.getImportantData();
 
     vm.acmeDb.forEach(function(element,index){
@@ -39,7 +33,7 @@
             internalDb.setCurrentDocumentIndex(index);
             vm.currentDocumentIndex = internalDb.getCurrentDocumentIndex();
 
-            var reviewsRef = ref.child('_content/'+ internalDb.getCurrentDocumentIndex() + '/document/reviews');
+            var reviewsRef = vm.ref.child('_content/'+ internalDb.getCurrentDocumentIndex() + '/document/reviews');
             internalDb.setMessages($firebaseArray(reviewsRef));
             vm.messages = internalDb.getMessages();
         }
@@ -53,25 +47,9 @@
     });
 
 
-    vm.go = go;
-    vm.awesomeThingCurrent;
-
-    vm.currentPage = internalDb.getPage();
-
-    vm.pageSize = IssuuFactory.doIssuuStuff().rsp._content.result.pageSize;
-    vm.pageChangeHandler = pageChangeHandler;
-    vm.changePagin = changePagin;
-    vm.itemsPerPage = 6;
-
-
-    function pageChangeHandler(num) {
-        internalDb.setPage(num);
-    }
-
     function showAboutChange() {
       vm.showAbout = true;
     }
-
 
 
     // function resetDatabase() {
@@ -86,23 +64,6 @@
     //     var reviewsRef = ref.child('_content/');
     //     reviewsRef.set(finalData);
     // }
-
-    function hideJumbo() {
-      return vm.showJumbo = false;
-    }
-
-    function isActive(item) {
-        return internalDb.getActiveThing() === item;
-    }
-
-    function go()  {
-        $anchorScroll();
-    }
-
-    function changePagin(){
-       internalDb.setPage(vm.currentPage);
-    }
-
 
   }
 })();

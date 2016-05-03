@@ -1,13 +1,15 @@
 <div class="row">
     <div class="col-md-12 text-center">
-            <uib-pagination boundary-links="true" total-items="mainCtrl.filteredItems.length" ng-model="mainCtrl.currentPage" ng-change="mainCtrl.changePagin()" class="pagination-lg" previous-text="<" next-text=">" first-text="<<" last-text=">>" items-per-page="mainCtrl.itemsPerPage">
+            <uib-pagination boundary-links="true" total-items="showallCtrl.filteredItems.length" ng-model="showallCtrl.currentPage" ng-change="showallCtrl.changePagin()" class="pagination-lg" previous-text="<" next-text=">" first-text="<<" last-text=">>" items-per-page="showallCtrl.itemsPerPage">
             </uib-pagination>
     </div>
     <div class="col-md-4"
-    ng-repeat="awesomeThing in mainCtrl.acmeDb | filter:query | orderBy : '-document.title' | queryFilter:this:'mainCtrl.filteredItems' | limitTo: mainCtrl.itemsPerPage : (mainCtrl.currentPage-1)*6 ">
+    ng-repeat="awesomeThing in showallCtrl.acmeDb |
+    filter:query | orderBy : '-document.title' | queryFilter:this:'showallCtrl.filteredItems' |
+    limitTo: showallCtrl.itemsPerPage : (showallCtrl.currentPage-1)*6 ">
         <a href="/#/pages/{{awesomeThing.document.coverID}}">
             <div class="thumbnail hovering"
-            ng-class="{'active': mainCtrl.isActive(awesomeThing.document.coverID)}">
+            ng-class="{'active': showallCtrl.isActive(awesomeThing.document.coverID)}">
                 <div class="caption">
                     <img class="col-sm-12" ng-src="/assets/images/cover/{{awesomeThing.document.coverID}}.jpg">
                     <h3 class="col-md-4">{{ awesomeThing.document.title }}</h3>

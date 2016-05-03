@@ -9,7 +9,9 @@
     function pogoList() {
         var directive = {
             restrict: 'E',
-            templateUrl: 'app/components/pogoList/pogoList.html'
+            templateUrl: 'app/components/pogoList/pogoList.html',
+            controller: 'ListController',
+            controllerAs: 'ListCtrl'
         };
 
         return directive;
