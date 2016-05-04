@@ -5,7 +5,8 @@
     .module('pogodno')
     .controller('NavbarController', NavbarController);
 
-  /** @ngInject */
+    NavbarController.$inject = ['$location'];
+
     function NavbarController($location) {
 
         var vm = this;

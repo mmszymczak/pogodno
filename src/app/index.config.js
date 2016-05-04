@@ -5,7 +5,8 @@
         .module('pogodno')
         .config(config);
 
-    /** @ngInject */
+    config.$inject = ['$logProvider', 'toastrConfig'];
+
     function config($logProvider, toastrConfig) {
         // Enable log
         $logProvider.debugEnabled(true);

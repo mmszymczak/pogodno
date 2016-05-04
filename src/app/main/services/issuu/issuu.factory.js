@@ -5,7 +5,9 @@
     .module('pogodno')
     .factory('IssuuFactory', IssuuFactory);
 
-    function IssuuFactory($http, $q, $firebaseObject, firebaseUrl){
+  IssuuFactory.$inject = ['$http', '$q', '$firebaseObject', 'firebaseUrl'];
+
+  function IssuuFactory($http, $q, $firebaseObject, firebaseUrl){
 	var vm = this;
 	var ref = new Firebase(firebaseUrl);
 	vm.myData = null;

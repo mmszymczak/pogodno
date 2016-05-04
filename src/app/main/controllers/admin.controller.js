@@ -5,8 +5,9 @@
     .module('pogodno')
     .controller('AdminController', AdminController);
 
-  /** @ngInject */
-  function AdminController($route, $q, toastr, internalDb, IssuuFactory, $location, $anchorScroll, $scope, $compile, $routeParams, firebaseUrl, $firebaseArray, $firebaseObject, Firebase, GravatarFactory) {
+  AdminController.$inject = ['Firebase', 'firebaseUrl'];
+
+  function AdminController(Firebase, firebaseUrl) {
 
     var vm = this;
     var ref = new Firebase(firebaseUrl);

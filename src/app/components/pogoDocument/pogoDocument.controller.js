@@ -5,7 +5,8 @@
     .module('pogodno')
     .controller('DocumentController', DocumentController);
 
-  /** @ngInject */
+    DocumentController.$inject = ['internalDb', '$location'];
+
     function DocumentController(internalDb, $location) {
 
         var vm = this;

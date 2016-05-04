@@ -5,7 +5,8 @@
     .module('pogodno')
     .controller('ReviewController', ReviewController);
 
-  /** @ngInject */
+    ReviewController.$inject = ['Firebase', 'firebaseUrl', 'GravatarFactory', 'IssuuFactory', 'internalDb'];
+
     function ReviewController(Firebase, firebaseUrl, GravatarFactory, IssuuFactory, internalDb) {
 
         var vm = this;

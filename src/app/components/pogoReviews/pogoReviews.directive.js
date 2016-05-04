@@ -5,7 +5,6 @@
         .module('pogodno')
         .directive('pogoReviews', pogoReviews);
 
-    /** @ngInject */
     function pogoReviews() {
         var directive = {
             restrict: 'E',
@@ -16,7 +15,6 @@
 
         return directive;
 
-        /** @ngInject */
     }
 
 })();

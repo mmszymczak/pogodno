@@ -5,7 +5,9 @@
     .module('pogodno')
     .controller('ShowallController', ShowallController);
 
-  /** @ngInject */
+
+    ShowallController.$inject = ['Firebase', 'firebaseUrl', 'internalDb', 'IssuuFactory', '$location', '$anchorScroll', '$firebaseArray'];
+
     function ShowallController(Firebase, firebaseUrl, internalDb, IssuuFactory, $location, $anchorScroll, $firebaseArray) {
 
         var vm = this;

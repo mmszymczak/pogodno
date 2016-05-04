@@ -5,7 +5,6 @@
         .module('pogodno')
         .directive('pogoNavbar', pogoNavbar);
 
-    /** @ngInject */
     function pogoNavbar() {
 
         var directive = {
@@ -17,7 +16,6 @@
 
         return directive;
 
-        /** @ngInject */
     }
 
 })();

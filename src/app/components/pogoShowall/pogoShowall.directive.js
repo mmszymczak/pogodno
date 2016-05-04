@@ -5,7 +5,6 @@
         .module('pogodno')
         .directive('pogoShowall', pogoShowall);
 
-    /** @ngInject */
     function pogoShowall() {
         var directive = {
             restrict: 'E',

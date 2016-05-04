@@ -5,7 +5,8 @@
     .module('pogodno')
     .controller('DescriptionController', DescriptionController);
 
-  /** @ngInject */
+    DescriptionController.$inject = ['internalDb'];
+
     function DescriptionController(internalDb) {
 
         var vm = this;

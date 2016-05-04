@@ -5,9 +5,9 @@
     .module('pogodno')
     .controller('ListController', ListController);
 
-  /** @ngInject */
-    function ListController(internalDb) {
+    ListController.$inject = ['internalDb'];
 
+    function ListController(internalDb) {
 
         var vm = this;
 

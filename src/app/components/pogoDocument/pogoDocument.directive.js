@@ -5,7 +5,7 @@
         .module('pogodno')
         .directive('pogoDocument', pogoDocument);
 
-    /** @ngInject */
+
     function pogoDocument() {
         var directive = {
             restrict: 'E',
@@ -14,6 +14,6 @@
             controllerAs: 'documentCtrl'
         };
         return directive;
-    }
 
+    }
 })();

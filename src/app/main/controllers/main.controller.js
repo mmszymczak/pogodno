@@ -5,8 +5,15 @@
     .module('pogodno')
     .controller('MainController', MainController);
 
-  /** @ngInject */
-  function MainController($route, $q, toastr, internalDb, IssuuFactory, $location, $anchorScroll, $scope, $compile, $routeParams, firebaseUrl, $firebaseArray, $firebaseObject, Firebase, GravatarFactory) {
+
+  MainController.$inject = ['$route', '$q', 'toastr', 'internalDb', 'IssuuFactory', '$location',
+                              '$anchorScroll', '$scope', '$compile', '$routeParams', 'firebaseUrl', '$firebaseArray',
+                              '$firebaseObject', 'Firebase', 'GravatarFactory'];
+
+
+  function MainController($route, $q, toastr, internalDb, IssuuFactory, $location,
+                          $anchorScroll, $scope, $compile, $routeParams, firebaseUrl, $firebaseArray,
+                          $firebaseObject, Firebase, GravatarFactory) {
 
     var vm = this;
 

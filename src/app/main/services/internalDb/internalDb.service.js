@@ -5,7 +5,8 @@
 			.module('pogodno')
 			.service('internalDb', internalDb);
 
-	/** @ngInject */
+  internalDb.$inject = ['IssuuFactory'];
+
 	function internalDb(IssuuFactory) {
 
     var vm = this;
