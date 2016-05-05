@@ -110,3 +110,13 @@ html,body {
     border: 0;
     margin: 0;
 }
+
+.moderate-delete-btn {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+
+.panel-heading-row {
+    position: relative;
+}

@@ -16,6 +16,8 @@
         vm.acmeDb = internalDb.getImportantData(vm.allDoc);
         vm.messages = internalDb.getMessages();
         vm.approvedComment = false;
+        vm.adminStatus = adminService.admin;
+        vm.deleteReview = deleteReview;
 
         function resetForm(form) {
             form.$setPristine();
@@ -30,6 +32,11 @@
 
             vm.review = {};
             vm.approvedComment = true;
+        }
+
+        function deleteReview(review) {
+            var commentsRef = new Firebase('https://pogodno.firebaseio.com/_content/'+review.dbID+'/document/reviews/'+review.$id);
+            commentsRef.remove();
         }
 
         function gravatarUrl(email) {
