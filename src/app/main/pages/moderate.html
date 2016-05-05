@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="row">
+        <div>
+            <pogo-navbar></pogo-navbar>
+        </div>
+        <div class="jumbotron">
+            <h2 class="text-center">Administrator</h2>
+            <div>
+                <div class="button-moderate">
+                    <a href="#/admin">Panel administratora</a>
+                    <a ng-click="modCtrl.logout()">Wyloguj</a>
+                </div>
+            </div>
+
+            <div class="moderate-wrapper">
+                <div ng-repeat="review in modCtrl.comments | orderBy: '-date'" class="moderate-relative">
+                    <div class="col-lg-10 moderate-column">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <strong>
+                                    <img ng-src="{{modCtrl.gravatarUrl(review.mail)}}">
+                                    <p class="pseudonim">{{review.pseudonim}}</p>
+                                    <p class="email"><a ng-href="mailto:{{review.mail}}" target="_blank">{{review.mail}}</a></p>
+                                </strong>
+                                <span class="text-muted">
+                                    <uib-rating ng-model="review.grade" max="5" readonly-input="true" state-on="'glyphicon glyphicon-star'" state-off="'glyphicon glyphicon-star-empty'" aria-labelledby="custom-icons-4" data-readonly="true"></uib-rating>
+                                </span>
+                            </div>
+                            <div class="panel-body" ng-show="review.context">
+                                <p>{{review.context}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="moderate-buttons-wrapper">
+                        <a href="moderate-btn-accept">Akceptuj i opublikuj</a>
+                        <a href="" class="moderate-btn-delete">Usuń</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <pogo-footer></pogo-footer>
+    </div>
+</div>

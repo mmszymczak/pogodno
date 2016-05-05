@@ -160,7 +160,7 @@
 			setMessages : setMessages,
 			getMessages : getMessages,
 
-			getImportantData : vm.getImportantData,
+			getImportantData : vm.getImportantData
 
 		};
 

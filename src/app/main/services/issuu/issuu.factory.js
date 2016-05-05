@@ -48,7 +48,7 @@
 	vm.requestUrl = "http://api.issuu.com/1_0?" + vm.signature[1] + "&signature=" + vm.signature[0];
 
     var promiseIssuu = $http.get(vm.requestUrl).success(function (data) {
-      	vm.myData = data;
+      vm.myData = data;
     });
 
 
@@ -68,11 +68,11 @@
 		promiseIssuu:promiseIssuu,
 		promiseData:promiseData(),
 		doIssuuStuff: function () {
-		  	return vm.myData;
+        return vm.myData;
 		},
     doFirebaseStuff: function () {
         return vm.firebaseObj;
-    },
+    }
     };
 
 }

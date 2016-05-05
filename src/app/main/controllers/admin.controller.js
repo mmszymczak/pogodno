@@ -6,12 +6,13 @@
     .controller('AdminController', AdminController);
 
   /** @ngInject */
-  function AdminController($route, $q, toastr, internalDb, IssuuFactory, $location, $anchorScroll, $scope, $compile, $routeParams, firebaseUrl, $firebaseArray, $firebaseObject, Firebase, GravatarFactory) {
+  function AdminController($route, $q, toastr, internalDb, adminService, IssuuFactory, $location, $anchorScroll, $scope, $compile, $routeParams, firebaseUrl, $firebaseArray, $firebaseObject, Firebase, GravatarFactory) {
 
     var vm = this;
     var ref = new Firebase(firebaseUrl);
     vm.login = login;
-    vm.showLoginAdmin = true;
+    vm.logout = logout;
+    vm.showLoginAdmin = adminService.admin;
 
     function login(){
           ref.authWithPassword({
@@ -20,13 +21,18 @@
         }, function(error) {    // authData param
           if (error) {
             toastr.error('Oj... Coś poszło nie tak.');
-            vm.showLoginAdmin = true;
+            vm.showLoginAdmin.connected = false;
           } else {
             toastr.success('Pomyślna próba zalogowania!');
             vm.adminAuth = true;
-            vm.showLoginAdmin = false;
+            vm.showLoginAdmin.connected = true;
+            vm.showLoginAdmin.username = vm.username;
           }
         });
+    }
+
+    function logout() {
+        adminService.admin.connected = false;
     }
 
 

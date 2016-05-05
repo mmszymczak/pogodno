@@ -19,7 +19,7 @@
 }
 
 html,body {
-	background: #007f00;
+	background: #9BDCD9;
 }
 
 .active {
@@ -28,4 +28,57 @@ html,body {
     border-bottom-width: 12px;
 }
 
+/* added here by m@lfi \/ */
+.button-moderate {
+    float: right;
+}
 
+.button-moderate a {
+    padding: 6px 16px;
+    background: black;
+    color: white;
+    font-size: 18px;
+    border-radius: 4px;
+}
+
+.moderate-wrapper {
+    margin-top: 100px;
+}
+
+.moderate-wrapper .moderate-column {
+    float: none !important;
+}
+
+.moderate-relative {
+    position: relative;
+}
+
+.moderate-buttons-wrapper {
+    position: absolute;
+    top: 60px;
+    right: 0;
+}
+
+.moderate-wrapper .panel img {
+    width: 60px;
+    height: auto;
+}
+
+.moderate-wrapper span.text-muted i.glyphicon {
+    font-size: 30px;
+    padding: 2px;
+    margin-top: 10px;
+}
+
+.moderate-wrapper .panel-body p {
+    margin: 0;
+    color: black;
+}
+
+.moderate-buttons-wrapper .moderate-btn-accept {
+
+}
+
+.moderate-buttons-wrapper .moderate-btn-delete {
+
+}
