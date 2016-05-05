@@ -4,7 +4,7 @@
             <pogo-navbar></pogo-navbar>
         </div>
         <div class="jumbotron">
-            <h2 class="text-center">Administrator</h2>
+            <h2 class="text-center">Moderacja komentarzy</h2>
             <div>
                 <div class="button-moderate">
                     <a href="#/admin">Panel administratora</a>
@@ -13,6 +13,9 @@
             </div>
 
             <div class="moderate-wrapper">
+                <div class="moderate-no-results" ng-if="!modCtrl.comments.length">
+                    <h2>Nie ma komentarzy do weryfikacji...</h2>
+                </div>
                 <div ng-repeat="review in modCtrl.comments | orderBy: '-date'" class="moderate-relative">
                     <div class="col-lg-10 moderate-column">
                         <div class="panel panel-default">
@@ -32,8 +35,10 @@
                         </div>
                     </div>
                     <div class="moderate-buttons-wrapper">
-                        <a href="moderate-btn-accept">Akceptuj i opublikuj</a>
-                        <a href="" class="moderate-btn-delete">Usuń</a>
+                        <a href="" class="btn btn-info"
+                           ng-click="modCtrl.approvedComment(review)">Akceptuj i opublikuj</a>
+                        <a href="" class="btn btn-danger"
+                           ng-click="modCtrl.deleteComment(review)">Usuń</a>
                     </div>
                 </div>
             </div>

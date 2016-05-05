@@ -55,7 +55,7 @@ html,body {
 
 .moderate-buttons-wrapper {
     position: absolute;
-    top: 60px;
+    top: 35px;
     right: 0;
 }
 
@@ -73,12 +73,40 @@ html,body {
 .moderate-wrapper .panel-body p {
     margin: 0;
     color: black;
+    word-break: break-word;
 }
 
-.moderate-buttons-wrapper .moderate-btn-accept {
-
+.moderate-buttons-wrapper a {
+    display: block;
+    margin-bottom: 25px;
 }
 
-.moderate-buttons-wrapper .moderate-btn-delete {
+.moderate-no-results {
+    text-align: center;
+    color: gray;
+}
 
+.moderate-feedback {
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    top: 0;
+    bottom: 0;
+    background: #A1D6B4;
+}
+
+.moderate-feedback h2 {
+    margin-top: 70px;
+}
+
+.form-row {
+    position: relative;
+}
+
+.moderate-wrapper .panel-body textarea {
+    width: 100%;
+    font-size: 20px;
+    border: 0;
+    margin: 0;
 }

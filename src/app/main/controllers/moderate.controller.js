@@ -6,13 +6,15 @@
         .controller('ModerateController', ModerateController);
 
     /** @ngInject */
-    function ModerateController(adminService, $location, GravatarFactory, internalDb) {
+    function ModerateController(adminService, $location, GravatarFactory, $firebaseArray) {
         var modCtrl = this;
 
+        modCtrl.comments = [];
         modCtrl.logout = logout;
         modCtrl.showLoginAdmin = adminService.admin;
         modCtrl.gravatarUrl = gravatarUrl;
-        modCtrl.comments = internalDb.getMessages();
+        modCtrl.approvedComment = approvedComment;
+        modCtrl.deleteComment = deleteComment;
 
         activate();
 
@@ -20,6 +22,23 @@
             if(!adminService.admin.connected) {
                 $location.path('admin');
             }
+            getCommentsToModerate();
+        }
+
+        function getCommentsToModerate() {
+            var commentsRef = new Firebase('https://pogodno.firebaseio.com/moderate/');
+
+            modCtrl.comments = $firebaseArray(commentsRef);
+        }
+
+        function approvedComment(comment) {
+            adminService.admin.approvedCommentPublish(comment);
+            deleteComment(comment);
+        }
+
+        function deleteComment(comment) {
+            var commentsRef = new Firebase('https://pogodno.firebaseio.com/moderate/'+comment.$id);
+            commentsRef.remove();
         }
 
         function logout() {

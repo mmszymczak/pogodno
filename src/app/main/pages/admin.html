@@ -4,14 +4,13 @@
           <pogo-navbar></pogo-navbar>
       </div>
           <div class="jumbotron">
-              <h2 class="text-center">Administrator</h2>
+              <h2 class="text-center">Panel Administratora</h2>
               <div ng-if="adminCtrl.showLoginAdmin.connected">
                   <div class="button-moderate">
                     <a href="#/admin/moderate">Moderacja komentarzy</a>
                     <a ng-click="adminCtrl.logout()">Wyloguj</a>
                   </div>
-                  <p>Witaj {{adminCtrl.username}}!</p>
-                  <form action="http://upload.issuu.com/1_0" enctype="multipart/form-data" method="post">
+<!--                   <form action="http://upload.issuu.com/1_0" enctype="multipart/form-data" method="post">
                       <input type="hidden" name="action" value="issuu.document.upload"/>
                       <input type="hidden" name="apiKey" value="mggx93e5clvkn6om0czhxhu91n2sl416"/>
                       <input type="text" name="name" value="racing"/>
@@ -19,7 +18,7 @@
                       <input type="hidden" name="signature" value="810b910ed5c8a53d704fd062a6001b22"/>
                       <input type="file" name="file"/>
                       <input type="submit" name="_upload" value="Upload"/>
-                  </form>
+                  </form> -->
               </div>
               <form name="form" ng-submit="adminCtrl.login() && form.$invalid" role="form" ng-if="!adminCtrl.showLoginAdmin.connected">
                   <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
