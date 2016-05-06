@@ -13,7 +13,10 @@
             username: '',
             moderateArr: [],
             sendCommentToModerator: sendCommentToModerator,
-            approvedCommentPublish: approvedCommentPublish
+            approvedCommentPublish: approvedCommentPublish,
+            sendCommentToReport: sendCommentToReport,
+            cleanObjToPush: cleanObjToPush,
+            replaceVerifiedComment: replaceVerifiedComment
         };
         return {admin: admin};
 
@@ -22,10 +25,23 @@
             placeRef.push(commentObj);
         }
 
+        function sendCommentToReport(commentObj) {
+            var placeRef = new Firebase('https://pogodno.firebaseio.com/reported/');
+            placeRef.push(commentObj);
+        }
+
         function approvedCommentPublish(commentObj) {
             commentObj = cleanObjToPush(commentObj);
             var placeRef = new Firebase('https://pogodno.firebaseio.com/_content/'+ commentObj.dbID + '/document/reviews');
             placeRef.push(commentObj);
+        }
+
+        function replaceVerifiedComment(commentObj) {
+            var commentID = commentObj.commonId;
+            commentObj = cleanObjToPush(commentObj);
+
+            var placeRef = new Firebase('https://pogodno.firebaseio.com/_content/'+ commentObj.dbID + '/document/reviews/');
+            placeRef.child(commentID).update(commentObj);
         }
 
         function cleanObjToPush(comment){
@@ -38,7 +54,8 @@
                 dbID: comment.dbID,
                 grade: comment.grade,
                 mail: comment.mail,
-                pseudonim: comment.pseudonim
+                pseudonim: comment.pseudonim,
+                reported: false
             }
             return cleanObj;
         }

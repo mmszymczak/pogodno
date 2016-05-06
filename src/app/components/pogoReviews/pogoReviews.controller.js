@@ -18,6 +18,7 @@
         vm.approvedComment = false;
         vm.adminStatus = adminService.admin;
         vm.deleteReview = deleteReview;
+        vm.reportReview = reportReview;
 
         function resetForm(form) {
             form.$setPristine();
@@ -34,9 +35,24 @@
             vm.approvedComment = true;
         }
 
+        function reportReview(review) {
+            var reviewDbId = review.$id;
+            review = adminService.admin.cleanObjToPush(review);
+
+            review.reported = true;
+            review.commonId = reviewDbId;
+
+            var placeRef = new Firebase('https://pogodno.firebaseio.com/_content/'+ review.dbID + '/document/reviews/');
+            placeRef.child(review.commonId).update(review);
+
+            adminService.admin.sendCommentToReport(review);
+        }
+
         function deleteReview(review) {
-            var commentsRef = new Firebase('https://pogodno.firebaseio.com/_content/'+review.dbID+'/document/reviews/'+review.$id);
-            commentsRef.remove();
+            if(adminService.admin.connected) {
+                var commentsRef = new Firebase('https://pogodno.firebaseio.com/_content/'+review.dbID+'/document/reviews/'+review.$id);
+                commentsRef.remove();
+            }
         }
 
         function gravatarUrl(email) {

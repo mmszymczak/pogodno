@@ -59,6 +59,13 @@
                 resolve: init,
                 resolveAs: 'initData'
             })
+            .when('/admin/report', {
+                templateUrl: 'app/main/pages/report.html',
+                controller: 'ReportController',
+                controllerAs: 'repCtrl',
+                resolve: init,
+                resolveAs: 'initData'
+            })
             .otherwise({
                 redirectTo: '/'
             });

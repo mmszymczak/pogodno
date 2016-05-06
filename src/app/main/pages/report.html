@@ -9,21 +9,21 @@
                     <a href="#/admin">Panel administratora</a>
                     <a href="#/admin/report">Zgłoszone komentarze</a>
                     <a href="#/admin/moderate">Moderacja komentarzy</a>
-                    <a ng-click="modCtrl.logout()">Wyloguj</a>
+                    <a ng-click="repCtrl.logout()">Wyloguj</a>
                 </div>
             </div>
-            <h2 class="text-center">Moderacja komentarzy</h2>
+            <h2 class="text-center">Weryfikacja zgłoszonych komentarzy</h2>
 
             <div class="moderate-wrapper">
-                <div class="moderate-no-results" ng-if="!modCtrl.comments.length">
+                <div class="moderate-no-results" ng-if="!repCtrl.reportedComments.length">
                     <h2>Nie ma komentarzy do weryfikacji...</h2>
                 </div>
-                <div ng-repeat="review in modCtrl.comments | orderBy: '-date'" class="moderate-relative">
+                <div ng-repeat="review in repCtrl.reportedComments | orderBy: '-date'" class="moderate-relative">
                     <div class="col-lg-10 moderate-column">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <strong>
-                                    <img ng-src="{{modCtrl.gravatarUrl(review.mail)}}">
+                                    <img ng-src="{{repCtrl.gravatarUrl(review.mail)}}">
                                     <p class="pseudonim">{{review.pseudonim}}</p>
                                     <p class="email"><a ng-href="mailto:{{review.mail}}" target="_blank">{{review.mail}}</a></p>
                                 </strong>
@@ -33,15 +33,15 @@
                                 </span>
                             </div>
                             <div class="panel-body" ng-show="review.context">
-                                <p>{{review.context}}</p>
+                                <textarea ng-model="review.context">{{review.context}}</textarea>
                             </div>
                         </div>
                     </div>
                     <div class="moderate-buttons-wrapper">
                         <a href="" class="btn btn-info"
-                           ng-click="modCtrl.approvedComment(review)">Akceptuj i opublikuj</a>
+                           ng-click="repCtrl.approvedComment(review)">Akceptuj i opublikuj</a>
                         <a href="" class="btn btn-danger"
-                           ng-click="modCtrl.deleteComment(review)">Usuń</a>
+                           ng-click="repCtrl.deleteComment(review)">Usuń</a>
                     </div>
                 </div>
             </div>

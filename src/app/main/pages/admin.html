@@ -3,10 +3,11 @@
       <div>
           <pogo-navbar></pogo-navbar>
       </div>
-          <div class="jumbotron">
-              <h2 class="text-center">Panel Administratora</h2>
+          <div class="jumbotron jumbotron-admin">
               <div ng-if="adminCtrl.showLoginAdmin.connected">
                   <div class="button-moderate">
+                    <a href="#/admin">Panel administratora</a>
+                    <a href="#/admin/report">Zgłoszone komentarze</a>
                     <a href="#/admin/moderate">Moderacja komentarzy</a>
                     <a ng-click="adminCtrl.logout()">Wyloguj</a>
                   </div>
@@ -20,6 +21,7 @@
                       <input type="submit" name="_upload" value="Upload"/>
                   </form> -->
               </div>
+              <h2 class="text-center">Panel Administratora</h2>
               <form name="form" ng-submit="adminCtrl.login() && form.$invalid" role="form" ng-if="!adminCtrl.showLoginAdmin.connected">
                   <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
                       <label for="username">Nazwa Użytkownika</label>
