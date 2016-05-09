@@ -1,6 +1,7 @@
 <nav class="navbar navbar-inverse" >
     <ul class="nav navbar-nav" ng-click="NavbarCtrl.hideJumbo()">
         <li ng-repeat="navLink in NavbarCtrl.navLinks" ng-class="NavbarCtrl.navClass('{{navLink.Title}}')"> <a href='#/{{navLink.Title}}'>{{navLink.LinkText}}</a></li>
+        <li ng-if="NavbarCtrl.isAdmin.connected"><a href="#/admin">Admin</a></li>
     </ul>
     <form class="navbar-form navbar-right navbar-search" role="search">
         <input type="text" class="form-control" id="searchBox" placeholder="Szukaj..." ng-model="query">

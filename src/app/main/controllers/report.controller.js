@@ -26,8 +26,7 @@
         }
 
         function getReportedComments() {
-            var commentsRef = new Firebase('https://pogodno.firebaseio.com/reported/');
-
+            var commentsRef = adminService.admin.getReportedComments();
             repCtrl.reportedComments = $firebaseArray(commentsRef);
         }
 
@@ -37,14 +36,12 @@
         }
 
         function deleteRepoted(comment) {
-            var reportRef = new Firebase('https://pogodno.firebaseio.com/reported/'+comment.$id);
-            reportRef.remove();
+            adminService.admin.deleteReported(comment);
         }
 
         function deleteComment(comment) {
             deleteRepoted(comment);
-            var commentsRef = new Firebase('https://pogodno.firebaseio.com/_content/'+ comment.dbID + '/document/reviews/'+comment.commonId);
-            commentsRef.remove();
+            adminService.admin.deleteComment(comment);
         }
 
         function logout() {

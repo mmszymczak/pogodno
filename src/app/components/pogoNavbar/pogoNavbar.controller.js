@@ -6,11 +6,12 @@
     .controller('NavbarController', NavbarController);
 
   /** @ngInject */
-    function NavbarController($location) {
+    function NavbarController($location, adminService) {
 
         var vm = this;
         vm.hideJumbo = hideJumbo;
         vm.navClass = navClass;
+        vm.isAdmin = adminService.admin;
 
         vm.navLinks = [{
             Title: '',

@@ -26,8 +26,7 @@
         }
 
         function getCommentsToModerate() {
-            var commentsRef = new Firebase('https://pogodno.firebaseio.com/moderate/');
-
+            var commentsRef = adminService.admin.getCommentsToModerate();
             modCtrl.comments = $firebaseArray(commentsRef);
         }
 
@@ -37,8 +36,7 @@
         }
 
         function deleteComment(comment) {
-            var commentsRef = new Firebase('https://pogodno.firebaseio.com/moderate/'+comment.$id);
-            commentsRef.remove();
+            adminService.admin.deleteModerateComment(comment);
         }
 
         function logout() {
